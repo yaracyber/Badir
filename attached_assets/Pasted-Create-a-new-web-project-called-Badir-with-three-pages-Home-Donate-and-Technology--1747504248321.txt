@@ -1,0 +1,58 @@
+Create a new web project called “Badir” with three pages: Home (🏠), Donate (💝), and Technology (⚡).
+
+1. Project tech stack:
+   • HTML5, CSS3, and vanilla JavaScript  
+   • Ethers.js (or Web3.js) for Ethereum interactions  
+   • Bootstrap (or Tailwind) for quick responsive layout  
+
+2. Global layout:
+   • A top navigation bar with three links: “🏠 Home”, “💝 Donate”, “⚡ Technology”  
+   • Consistent header/footer on every page  
+
+3. Home page:
+   • A hero section introducing Badir  
+   • A brief mission statement and a “Go Donate” button  
+
+4. Donate page:
+   • Display a fundraising goal: “Help us reach 10 ETH to support communities in need!”  
+   • A progress indicator showing “4 ETH raised out of 10 ETH” (dynamically pulled from the smart contract)  
+   • A donation form:
+     – Input field “Amount in ETH” (min 0.2, max 20)  
+     – “Submit Donation” button  
+   • Below the form, four info blocks with buttons that call contract read-functions via Ethers.js:
+     1. **Highest Donation (Owner Only)**  
+        – Button: “Get Highest Donation”  
+        – Area to display: donor address + amount  
+     2. **Total Donations**  
+        – Button: “Get Total Donations”  
+        – Area to display total donated ETH  
+     3. **Charity Address**  
+        – Button: “Get Charity Address”  
+        – Area to display the current wallet address set as the charity  
+     4. **Fundraising Goal**  
+        – Read-only display of goal (10 ETH)  
+
+   • All contract calls should handle loading states and error messages gracefully.
+
+5. Technology page:
+   • Section “Our Technology Stack” with icons/logos for HTML, CSS, JavaScript, Solidity, Ethers.js, etc., and a short blurb: “Built with cutting-edge blockchain technology …”  
+   • Section “How Does Blockchain Work?”  
+     – Embed a YouTube video explaining blockchain fundamentals  
+     – A numbered, step-by-step text guide:
+       1. Many participants maintain a shared ledger  
+       2. Transactions are grouped into blocks  
+       3. Blocks are cryptographically linked…  
+       4. Consensus ensures trust and security  
+
+6. Organize code in a clear folder structure:  
+   • `/index.html`, `/donate.html`, `/technology.html`  
+   • `/css/styles.css`  
+   • `/js/app.js` (or separate JS modules per page)  
+   • `/contracts/Badir.sol` (optional—include the ABI or address in config)
+
+7. Include comments and README instructions on how to:
+   • Configure the contract address and ABI  
+   • Install dependencies (`npm install ethers`)  
+   • Run with a local dev server (e.g., `npx live-server`)  
+
+Generate fully working HTML/CSS/JS boilerplate with placeholder sections wired up to Ethers.js calls, ready for me to drop in my smart-contract address and ABI.```
