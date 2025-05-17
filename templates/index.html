@@ -1,322 +1,543 @@
 {% extends "layout.html" %}
 
-{% block title %}Badir - Blockchain Charity Platform{% endblock %}
+{% block title %}Badir - The Future of Blockchain Charity{% endblock %}
 
 {% block extra_css %}
 <style>
-    .gradient-hero {
-        background: linear-gradient(135deg, #14202E 0%, #1E3957 100%);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
+    /* Tech-focused hero section */
+    .hero-section {
+        background-color: var(--color-darkest-navy);
         position: relative;
+        overflow: hidden;
+        height: 100vh;
+        min-height: 700px;
+        display: flex;
+        align-items: center;
+        margin-top: -76px; /* Account for navbar height */
+        padding-top: 76px;
     }
     
-    .gradient-hero::before {
-        content: "";
+    .hero-section::before {
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: url("{{ url_for('static', filename='img/pattern-dots.svg') }}");
-        opacity: 0.1;
+        background-image: 
+            linear-gradient(to right, rgba(20, 32, 46, 0.9), rgba(30, 57, 87, 0.8)),
+            url('https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
     }
     
     .hero-content {
         position: relative;
-        z-index: 10;
+        z-index: 2;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.1;
+        background-image: url("{{ url_for('static', filename='img/pattern-dots.svg') }}");
+        background-size: 30px 30px;
     }
     
     .hero-title {
-        background: linear-gradient(to right, #fff, #C7A95E);
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+        background: linear-gradient(90deg, #ECF0F5 0%, #C7A95E 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         color: transparent;
-        font-weight: 800;
-        font-family: 'Playfair Display', serif;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+        max-width: 650px;
+    }
+    
+    .hero-btn {
+        padding: 15px 35px;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        font-weight: 600;
+        border-radius: 8px;
+    }
+    
+    .hero-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-primary-action {
+        background: linear-gradient(135deg, var(--color-gold), #D4B267);
+        border: none;
+        color: var(--color-darkest-navy);
+    }
+    
+    .btn-secondary-action {
+        background-color: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+    
+    .btn-secondary-action:hover {
+        border-color: var(--color-gold);
+        color: var(--color-gold);
+    }
+    
+    .hero-stats {
+        margin-top: 80px;
+        display: flex;
+        gap: 40px;
+    }
+    
+    .hero-stat-item {
+        text-align: center;
+        position: relative;
+    }
+    
+    .hero-stat-item::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -20px;
+        width: 1px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .hero-stat-item:last-child::after {
+        display: none;
+    }
+    
+    .hero-stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-gold);
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+    
+    .hero-stat-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .hero-image {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .hero-image-inner {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        transform: perspective(1000px) rotateY(-15deg) rotateX(5deg) rotateZ(-2deg);
+        transition: all 0.5s ease;
+    }
+    
+    .hero-image-inner:hover {
+        transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) rotateZ(-1deg);
+    }
+    
+    .hero-image-inner img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    .hero-image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(20, 32, 46, 0.2), rgba(30, 57, 87, 0.1));
+    }
+    
+    .hero-floating-blocks {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    
+    .floating-block {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        background: rgba(199, 169, 94, 0.1);
+        border: 1px solid rgba(199, 169, 94, 0.2);
+        animation: float 15s infinite ease-in-out;
+    }
+    
+    .floating-block:nth-child(1) {
+        top: 15%;
+        left: 10%;
+        width: 60px;
+        height: 60px;
+        animation-delay: 0s;
+    }
+    
+    .floating-block:nth-child(2) {
+        top: 25%;
+        left: 85%;
+        width: 90px;
+        height: 90px;
+        animation-delay: -5s;
+    }
+    
+    .floating-block:nth-child(3) {
+        top: 60%;
+        left: 5%;
+        width: 70px;
+        height: 70px;
+        animation-delay: -8s;
+    }
+    
+    .floating-block:nth-child(4) {
+        top: 75%;
+        left: 75%;
+        width: 50px;
+        height: 50px;
+        animation-delay: -12s;
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        25% {
+            transform: translateY(-30px) translateX(15px) rotate(5deg);
+        }
+        50% {
+            transform: translateY(10px) translateX(25px) rotate(10deg);
+        }
+        75% {
+            transform: translateY(-20px) translateX(-15px) rotate(-5deg);
+        }
+    }
+    
+    .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+    }
+    
+    .scroll-indicator span {
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    
+    .scroll-indicator-line {
+        width: 1px;
+        height: 50px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+        animation: scrollIndicator 2s infinite;
+    }
+    
+    @keyframes scrollIndicator {
+        0% {
+            transform: scaleY(0);
+            transform-origin: top;
+        }
+        50% {
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+        50.1% {
+            transform-origin: bottom;
+        }
+        100% {
+            transform: scaleY(0);
+            transform-origin: bottom;
+        }
+    }
+    
+    /* Features Section */
+    .features-section {
+        padding: 120px 0;
+        background-color: var(--light-color);
+        position: relative;
+    }
+    
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 60px;
     }
     
     .feature-card {
-        border-radius: 12px;
+        background: white;
+        border-radius: 16px;
         overflow: hidden;
-        transition: all 0.3s ease;
-        border: none;
+        box-shadow: 0 15px 40px rgba(20, 32, 46, 0.08);
+        transition: all 0.4s ease;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, var(--color-deep-navy), var(--color-gold));
+        z-index: 2;
+        opacity: 0;
+        transition: all 0.4s ease;
     }
     
     .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-15px);
+        box-shadow: 0 25px 50px rgba(20, 32, 46, 0.12);
     }
     
-    .feature-card .card-body {
-        padding: 2rem;
+    .feature-card:hover::before {
+        opacity: 1;
     }
     
-    .feature-card .card-title {
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-deep-navy), var(--color-navy));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: var(--color-gold);
+        font-size: 2rem;
+        transition: all 0.4s ease;
+    }
+    
+    .feature-card:hover .feature-icon {
+        transform: rotateY(180deg);
+    }
+    
+    .feature-title {
+        font-size: 1.5rem;
         font-weight: 700;
-        margin-bottom: 1rem;
-        position: relative;
+        margin-bottom: 15px;
+        color: var(--color-deep-navy);
     }
     
-    .feature-card .card-title::after {
-        content: "";
+    .feature-description {
+        font-size: 1rem;
+        color: #4A536A;
+        line-height: 1.7;
+    }
+    
+    .section-title {
+        position: relative;
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 60px;
+        text-align: center;
+        color: var(--color-deep-navy);
+    }
+    
+    .section-title::after {
+        content: '';
         position: absolute;
-        bottom: -8px;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, var(--color-deep-navy), var(--color-gold));
+        border-radius: 2px;
+    }
+    
+    .section-subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #4A536A;
+        max-width: 800px;
+        margin: -40px auto 0;
+    }
+    
+    /* Blockchain Journey Section */
+    .blockchain-journey {
+        padding: 120px 0;
+        background: linear-gradient(135deg, var(--color-deep-navy), var(--color-darkest-navy));
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .blockchain-journey::before {
+        content: '';
+        position: absolute;
+        top: 0;
         left: 0;
-        width: 40px;
-        height: 3px;
+        width: 100%;
+        height: 100%;
+        background-image: url("{{ url_for('static', filename='img/pattern-dots.svg') }}");
+        opacity: 0.05;
     }
     
-    .transparent-card .card-title::after {
-        background: linear-gradient(to right, #1E3957, #C7A95E);
-    }
-    
-    .community-card .card-title::after {
-        background: linear-gradient(to right, #1E3957, #C7A95E);
-    }
-    
-    .innovation-card .card-title::after {
-        background: linear-gradient(to right, #1E3957, #C7A95E);
-    }
-    
-    .mission-gradient {
-        background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    .journey-title {
+        color: white;
         position: relative;
     }
     
-    .mission-gradient::after {
+    .journey-title::after {
+        background: linear-gradient(to right, var(--color-gold), var(--color-deep-navy));
+    }
+    
+    .journey-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .journey-steps {
+        position: relative;
+        padding-left: 0;
+        margin-top: 80px;
+    }
+    
+    .journey-step {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 80px;
+        position: relative;
+    }
+    
+    .journey-step:last-child {
+        margin-bottom: 0;
+    }
+    
+    .journey-step::after {
+        content: '';
+        position: absolute;
+        top: 60px;
+        left: 35px;
+        width: 1px;
+        height: calc(100% + 20px);
+        background: linear-gradient(to bottom, var(--color-gold), rgba(255, 255, 255, 0.1));
+        z-index: 0;
+    }
+    
+    .journey-step:last-child::after {
+        display: none;
+    }
+    
+    .step-number {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-gold), rgba(199, 169, 94, 0.8));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--color-darkest-navy);
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 10px 30px rgba(199, 169, 94, 0.3);
+    }
+    
+    .step-content {
+        flex: 1;
+        padding-top: 5px;
+    }
+    
+    .step-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: white;
+    }
+    
+    .step-description {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+    }
+    
+    /* Active Campaigns */
+    .campaigns-section {
+        padding: 120px 0;
+        background-color: var(--light-color);
+    }
+    
+    .campaign-card {
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 15px 35px rgba(20, 32, 46, 0.1);
+        background-color: white;
+        position: relative;
+        height: 100%;
+    }
+    
+    .campaign-card::after {
         content: "";
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         height: 5px;
-        background: linear-gradient(to right, #1E3957, #C7A95E);
-        border-radius: 0 0 15px 15px;
-    }
-    
-    .mission-title {
-        position: relative;
-        display: inline-block;
-        margin-bottom: 1.5rem;
-        color: #1E3957;
-    }
-    
-    .mission-title::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: linear-gradient(to right, #1E3957, #C7A95E);
-    }
-    
-    .btn-donate {
-        background: linear-gradient(to right, #C7A95E, #D4B267) !important;
-        border: none;
-        box-shadow: 0 4px 15px rgba(199, 169, 94, 0.3);
-        transition: all 0.3s ease;
-        color: #14202E !important;
-    }
-    
-    .btn-donate:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(199, 169, 94, 0.4);
-    }
-    
-    .btn-secondary-gradient {
-        background: linear-gradient(to right, #1E3957, #2B4257);
-        border: none;
-        box-shadow: 0 4px 15px rgba(30, 57, 87, 0.3);
-        transition: all 0.3s ease;
-    }
-    
-    .btn-secondary-gradient:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(30, 57, 87, 0.4);
-    }
-    
-    .stats-counter {
-        background: linear-gradient(135deg, #1E3957 0%, #14202E 100%);
-        border-radius: 15px;
-        padding: 3rem 0;
-        position: relative;
-        overflow: hidden;
-        margin-top: 3rem;
-    }
-    
-    .stats-counter::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url("{{ url_for('static', filename='img/pattern-dots.svg') }}");
-        opacity: 0.1;
-    }
-    
-    .counter-item {
-        padding: 1rem;
-        text-align: center;
-        position: relative;
-        z-index: 1;
-    }
-    
-    .counter-number {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(to right, #C7A95E, #D4B267);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent;
-    }
-    
-    .counter-label {
-        color: #ECF0F5;
-        font-weight: 500;
-    }
-    
-    .cta-gradient {
-        background: linear-gradient(135deg, #14202E 0%, #1E3957 100%);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        position: relative;
-    }
-    
-    .cta-gradient::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url("{{ url_for('static', filename='img/pattern-dots.svg') }}");
-        opacity: 0.1;
-    }
-    
-    .cta-content {
-        position: relative;
-        z-index: 1;
-    }
-    
-    .floating-eth {
-        position: absolute;
-        font-size: 6rem;
-        color: rgba(199, 169, 94, 0.1);
-        z-index: 0;
-    }
-    
-    .eth-1 {
-        top: 10%;
-        left: 10%;
-        transform: rotate(-15deg);
-    }
-    
-    .eth-2 {
-        bottom: 10%;
-        right: 10%;
-        transform: rotate(15deg);
-    }
-    
-    .hero-image-wrapper {
-        position: relative;
-        overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-    
-    .hero-image-wrapper img {
-        transition: transform 0.5s ease;
-    }
-    
-    .hero-image-wrapper:hover img {
-        transform: scale(1.05);
-    }
-    
-    .scroll-down {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #C7A95E;
-        font-size: 1.5rem;
-        animation: bounce 2s infinite;
-        cursor: pointer;
-        z-index: 10;
-    }
-    
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0) translateX(-50%);
-        }
-        40% {
-            transform: translateY(-20px) translateX(-50%);
-        }
-        60% {
-            transform: translateY(-10px) translateX(-50%);
-        }
-    }
-    
-    .welcome-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #eef2f7 100%);
-        border-radius: 15px;
-        padding: 3rem;
-        margin-top: 3rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        position: relative;
-        overflow: hidden;
-        border-left: 5px solid #C7A95E;
-    }
-    
-    .welcome-title {
-        position: relative;
-        font-weight: 800;
-        margin-bottom: 1.5rem;
-        color: #1E3957;
-        font-family: 'Playfair Display', serif;
-    }
-    
-    .welcome-text {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #2c3e50;
-    }
-    
-    .campaign-card {
-        border-radius: 12px;
-        overflow: hidden;
-        transition: all 0.4s ease;
-        border: none;
-        margin-bottom: 30px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        background: linear-gradient(to right, var(--color-deep-navy), var(--color-gold));
+        opacity: 0;
+        transition: all 0.5s ease;
     }
     
     .campaign-card:hover {
         transform: translateY(-15px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 25px 50px rgba(20, 32, 46, 0.15);
+    }
+    
+    .campaign-card:hover::after {
+        opacity: 1;
     }
     
     .campaign-img-container {
         position: relative;
         overflow: hidden;
-        height: 220px;
+        height: 250px;
     }
     
     .campaign-img-container img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+        transition: transform 0.7s ease;
     }
     
     .campaign-card:hover .campaign-img-container img {
@@ -328,202 +549,405 @@
         top: 15px;
         right: 15px;
         background: rgba(20, 32, 46, 0.85);
-        color: #C7A95E;
-        padding: 5px 10px;
-        border-radius: 20px;
+        color: var(--color-gold);
+        padding: 8px 15px;
+        border-radius: 30px;
         font-size: 0.8rem;
         font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .campaign-card .card-body {
+        padding: 25px;
+    }
+    
+    .campaign-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        font-weight: 700;
+        color: var(--color-deep-navy);
+        transition: all 0.3s ease;
+    }
+    
+    .campaign-card:hover .campaign-title {
+        color: var(--color-gold);
+    }
+    
+    .campaign-description {
+        color: #4A536A;
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
     }
     
     .campaign-progress {
         height: 8px;
         border-radius: 4px;
         background: #ECF0F5;
-        margin: 15px 0;
+        margin: 20px 0;
         overflow: hidden;
     }
     
     .progress-bar-custom {
         height: 100%;
         border-radius: 4px;
+        background: linear-gradient(to right, var(--color-deep-navy), var(--color-gold));
+        position: relative;
     }
     
-    .progress-gaza {
-        background: linear-gradient(to right, #1E3957, #2B4257);
-        width: 45%;
+    .progress-bar-custom::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent
+        );
+        background-size: 15px 15px;
+        animation: progressAnimation 2s linear infinite;
     }
     
-    .progress-palestine {
-        background: linear-gradient(to right, #1E3957, #2B4257);
-        width: 50%;
-    }
-    
-    .progress-healthcare {
-        background: linear-gradient(to right, #1E3957, #2B4257);
-        width: 35%;
+    @keyframes progressAnimation {
+        0% { background-position: 0 0; }
+        100% { background-position: 15px 0; }
     }
     
     .campaign-stats {
         display: flex;
         justify-content: space-between;
-        color: #1E3957;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--color-deep-navy);
+        margin-bottom: 20px;
+    }
+    
+    .campaign-button {
+        width: 100%;
+        padding: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
         font-size: 0.9rem;
-        margin-bottom: 15px;
-        font-weight: 500;
+        background: linear-gradient(135deg, var(--color-deep-navy), var(--color-navy));
+        border: none;
+        color: white;
+        border-radius: 8px;
+        transition: all 0.3s ease;
     }
     
-    .campaign-title {
-        font-weight: 700;
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        color: #1E3957;
-        font-family: 'Playfair Display', serif;
+    .campaign-button:hover {
+        background: linear-gradient(135deg, var(--color-navy), var(--color-deep-navy));
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(30, 57, 87, 0.2);
     }
     
-    .campaign-section-title {
+    /* CTA Section */
+    .cta-section {
+        padding: 120px 0;
+        background: linear-gradient(135deg, var(--color-deep-navy), var(--color-darkest-navy));
         position: relative;
-        display: inline-block;
-        font-weight: 800;
-        margin-bottom: 2.5rem;
-        color: #1E3957;
-        font-family: 'Playfair Display', serif;
+        overflow: hidden;
     }
     
-    .campaign-section-title::after {
-        content: "";
+    .cta-section::before {
+        content: '';
         position: absolute;
-        bottom: -15px;
+        top: 0;
         left: 0;
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(to right, #1E3957, #C7A95E);
-        border-radius: 2px;
+        width: 100%;
+        height: 100%;
+        background-image: url("{{ url_for('static', filename='img/pattern-dots.svg') }}");
+        opacity: 0.05;
     }
     
-    .campaign-description {
-        color: #2B4257;
-        margin-bottom: 15px;
-        line-height: 1.6;
+    .cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
     }
     
-    /* Gold accents */
-    .gold-accent {
-        color: #C7A95E;
+    .cta-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 30px;
     }
     
-    /* Navy backgrounds */
-    .bg-navy {
-        background-color: #1E3957;
+    .cta-description {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 40px;
+        line-height: 1.7;
     }
     
-    .bg-dark-navy {
-        background-color: #14202E;
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
     }
     
-    /* Text elements */
-    .display-4 {
-        font-family: 'Playfair Display', serif;
-        font-weight: 700;
+    .floating-eth {
+        position: absolute;
+        font-size: 12rem;
+        color: rgba(255, 255, 255, 0.03);
+        z-index: 1;
     }
     
-    .lead {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
+    .eth-1 {
+        top: 10%;
+        left: 10%;
+        animation: floatEth 20s infinite ease-in-out;
+    }
+    
+    .eth-2 {
+        bottom: 10%;
+        right: 10%;
+        animation: floatEth 25s infinite ease-in-out reverse;
+    }
+    
+    @keyframes floatEth {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        25% {
+            transform: translateY(-30px) rotate(5deg);
+        }
+        50% {
+            transform: translateY(20px) rotate(-5deg);
+        }
+        75% {
+            transform: translateY(-10px) rotate(2deg);
+        }
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .hero-title {
+            font-size: 2.8rem;
+        }
+        
+        .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .hero-image {
+            margin-top: 50px;
+        }
+        
+        .hero-section {
+            height: auto;
+            padding-bottom: 100px;
+        }
+        
+        .hero-stats {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.2rem;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .journey-step {
+            gap: 20px;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+        
+        .journey-step::after {
+            left: 30px;
+        }
+        
+        .hero-stats {
+            gap: 20px;
+        }
+        
+        .hero-stat-number {
+            font-size: 2rem;
+        }
+        
+        .hero-stat-item::after {
+            display: none;
+        }
+        
+        .cta-title {
+            font-size: 2.2rem;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+        }
     }
 </style>
 {% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<section class="gradient-hero py-5 mb-5 text-white">
-    <div class="container py-4">
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-floating-blocks">
+        <div class="floating-block"></div>
+        <div class="floating-block"></div>
+        <div class="floating-block"></div>
+        <div class="floating-block"></div>
+    </div>
+    <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 hero-content">
-                <h1 class="display-4 hero-title mb-4">Empowering Communities Through Blockchain</h1>
-                <p class="lead mb-4">Badir uses Ethereum technology to create transparent, efficient, and secure donation channels to communities in need.</p>
-                <div class="d-flex gap-3">
-                    <a href="{{ url_for('donate') }}" class="btn btn-light btn-lg">
-                        <i class="fas fa-hand-holding-heart me-2"></i> Donate
+                <h1 class="hero-title" data-aos="fade-up">Revolutionizing Charity Through Blockchain Technology</h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Badir leverages Ethereum smart contracts to create transparent, secure, and efficient donation channels, ensuring your contributions directly reach those in need.</p>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <a href="{{ url_for('donate') }}" class="btn hero-btn btn-primary-action">
+                        Start Donating
                     </a>
-                    <a href="{{ url_for('technology') }}" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-info-circle me-2"></i> Learn More
+                    <a href="{{ url_for('technology') }}" class="btn hero-btn btn-secondary-action ms-3">
+                        Explore Technology
                     </a>
                 </div>
-            </div>
-            <div class="col-lg-6 mt-5 mt-lg-0">
-                <div class="hero-image-wrapper">
-                    <img src="https://pixabay.com/get/g52138da7d11b5741040dc98eb9d44523e66652a794d4b39fa3cbd05e45dcb77f46fbbee0bc4fda0ed831ce25b07895a978f035ccab0cd31cdafac7bf223f90ac_1280.jpg" 
-                         alt="Blockchain Technology" class="img-fluid">
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="300">
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-number">148 ETH</div>
+                        <div class="hero-stat-label">Total Raised</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-number">120+</div>
+                        <div class="hero-stat-label">Donors</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-number">3</div>
+                        <div class="hero-stat-label">Communities</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="scroll-down">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </div>
-</section>
-
-<!-- Welcome Section -->
-<section class="welcome-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <h2 class="welcome-title">Welcome to Badir</h2>
-                <p class="welcome-text">
-                    Harness the power of blockchain to make charitable giving more transparent, secure, and impactful. 
-                    Every donation supports trusted charities, and by leveraging smart contracts on Ethereum, 
-                    we ensure every contribution is traceable and auditable in real time.
-                </p>
-                <p class="welcome-text mb-0">
-                    Ready to make a difference? Switch to the Donate page to send ETH, check your wallet, and track donations seamlessly!
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Stats Counter -->
-<section class="stats-counter">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-6">
-                <div class="counter-item">
-                    <div class="counter-number">148 ETH</div>
-                    <div class="counter-label">Raised So Far</div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="counter-item">
-                    <div class="counter-number">120+</div>
-                    <div class="counter-label">Donors</div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="counter-item">
-                    <div class="counter-number">15</div>
-                    <div class="counter-label">Projects</div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="counter-item">
-                    <div class="counter-number">3</div>
-                    <div class="counter-label">Communities</div>
+            <div class="col-lg-6 hero-image" data-aos="fade-left" data-aos-delay="400">
+                <div class="hero-image-inner">
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Blockchain Charity">
+                    <div class="hero-image-overlay"></div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-indicator-line"></div>
+    </div>
 </section>
 
-<!-- Active Campaigns -->
-<section class="active-campaigns py-5 my-5">
+<!-- Features Section -->
+<section class="features-section">
     <div class="container">
-        <h2 class="campaign-section-title">Active Campaigns</h2>
-        <p class="lead mb-5">Explore our ongoing campaigns and help us reach our goals!</p>
+        <h2 class="section-title" data-aos="fade-up">Why Choose Badir</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Harness the power of blockchain to make charitable giving more transparent, secure, and impactful. Our platform ensures every contribution is traceable and auditable in real time.</p>
         
-        <div class="row">
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-body text-center p-5">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">100% Transparent</h3>
+                    <p class="feature-description">All transactions are permanently recorded on the Ethereum blockchain, creating an immutable and publicly accessible record of your donation's journey.</p>
+                </div>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-body text-center p-5">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Instant Transfers</h3>
+                    <p class="feature-description">Smart contracts execute automatically, ensuring your donations reach their destination without intermediaries or unnecessary delays.</p>
+                </div>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-body text-center p-5">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Tracking</h3>
+                    <p class="feature-description">Monitor the progress of fundraising campaigns in real-time and see exactly how your contribution is making an impact on the ground.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blockchain Journey Section -->
+<section class="blockchain-journey">
+    <div class="container">
+        <h2 class="section-title journey-title" data-aos="fade-up">How It Works</h2>
+        <p class="section-subtitle journey-subtitle" data-aos="fade-up" data-aos-delay="100">Our platform leverages smart contracts on the Ethereum blockchain to create a transparent, efficient, and secure donation process.</p>
+        
+        <div class="journey-steps">
+            <div class="journey-step" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Connect Your Wallet</h3>
+                    <p class="step-description">Link your Ethereum wallet to our platform with a simple click. We support MetaMask, WalletConnect, and other popular crypto wallets.</p>
+                </div>
+            </div>
+            
+            <div class="journey-step" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">Choose a Campaign</h3>
+                    <p class="step-description">Browse our active campaigns and select the cause that resonates with you. Each campaign includes detailed information about the impact of your donation.</p>
+                </div>
+            </div>
+            
+            <div class="journey-step" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Make a Secure Donation</h3>
+                    <p class="step-description">Contribute any amount of ETH through our secure smart contracts. The transaction is recorded on the blockchain, ensuring complete transparency.</p>
+                </div>
+            </div>
+            
+            <div class="journey-step" data-aos="fade-up" data-aos-delay="400">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title">Track Your Impact</h3>
+                    <p class="step-description">Monitor your donation in real-time as it makes its way to the beneficiaries. Receive updates on the project's progress and see the difference you're making.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Active Campaigns Section -->
+<section class="campaigns-section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Active Campaigns</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Explore our ongoing campaigns and help us reach our goals to support communities in need.</p>
+        
+        <div class="row mt-5">
             <!-- Gaza Campaign -->
-            <div class="col-lg-4 col-md-6">
-                <div class="campaign-card">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="campaign-card h-100">
                     <div class="campaign-img-container">
                         <img src="{{ url_for('static', filename='img/campaigns/gaza.jpg') }}" alt="Aid For Gaza Strip">
                         <span class="campaign-badge">Urgent</span>
@@ -532,13 +956,13 @@
                         <h3 class="campaign-title">Aid For Gaza Strip</h3>
                         <p class="campaign-description">Escalating violence is putting thousands of children at risk. Send help now!</p>
                         <div class="campaign-progress">
-                            <div class="progress-bar-custom progress-gaza"></div>
+                            <div class="progress-bar-custom" style="width: 45%;"></div>
                         </div>
                         <div class="campaign-stats">
                             <span>45 ETH raised</span>
                             <span>Goal: 100 ETH</span>
                         </div>
-                        <a href="{{ url_for('donate') }}" class="btn btn-secondary-gradient text-white w-100">
+                        <a href="{{ url_for('donate') }}" class="btn campaign-button">
                             <i class="fas fa-hand-holding-heart me-2"></i> Donate Now
                         </a>
                     </div>
@@ -546,8 +970,8 @@
             </div>
             
             <!-- Palestine Campaign -->
-            <div class="col-lg-4 col-md-6">
-                <div class="campaign-card">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="campaign-card h-100">
                     <div class="campaign-img-container">
                         <img src="{{ url_for('static', filename='img/campaigns/palestine.jpg') }}" alt="Palestine And Lebanon Emergency">
                         <span class="campaign-badge">Critical</span>
@@ -556,13 +980,13 @@
                         <h3 class="campaign-title">Palestine And Lebanon Emergency</h3>
                         <p class="campaign-description">Support our mission to bring vital assistance during emergencies.</p>
                         <div class="campaign-progress">
-                            <div class="progress-bar-custom progress-palestine"></div>
+                            <div class="progress-bar-custom" style="width: 50%;"></div>
                         </div>
                         <div class="campaign-stats">
                             <span>75 ETH raised</span>
                             <span>Goal: 150 ETH</span>
                         </div>
-                        <a href="{{ url_for('donate') }}" class="btn btn-secondary-gradient text-white w-100">
+                        <a href="{{ url_for('donate') }}" class="btn campaign-button">
                             <i class="fas fa-hand-holding-heart me-2"></i> Donate Now
                         </a>
                     </div>
@@ -570,87 +994,25 @@
             </div>
             
             <!-- Healthcare Campaign -->
-            <div class="col-lg-4 col-md-6">
-                <div class="campaign-card">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="campaign-card h-100">
                     <div class="campaign-img-container">
                         <img src="{{ url_for('static', filename='img/campaigns/healthcare.jpg') }}" alt="Healthcare Access">
                         <span class="campaign-badge">Ongoing</span>
                     </div>
                     <div class="card-body">
                         <h3 class="campaign-title">Healthcare Access</h3>
-                        <p class="campaign-description">Expanding medical facilities in underserved areas.</p>
+                        <p class="campaign-description">Expanding medical facilities in underserved areas to provide essential healthcare services.</p>
                         <div class="campaign-progress">
-                            <div class="progress-bar-custom progress-healthcare"></div>
+                            <div class="progress-bar-custom" style="width: 35%;"></div>
                         </div>
                         <div class="campaign-stats">
                             <span>28 ETH raised</span>
                             <span>Goal: 80 ETH</span>
                         </div>
-                        <a href="{{ url_for('donate') }}" class="btn btn-secondary-gradient text-white w-100">
+                        <a href="{{ url_for('donate') }}" class="btn campaign-button">
                             <i class="fas fa-hand-holding-heart me-2"></i> Donate Now
                         </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Mission Statement -->
-<section class="mission-gradient py-5 my-5">
-    <div class="container py-4">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h2 class="mission-title">Our Mission</h2>
-                <p class="lead mb-4">
-                    At Badir, we believe that blockchain technology can revolutionize charitable giving by 
-                    ensuring transparency, reducing overhead, and creating direct connections between donors 
-                    and beneficiaries. Every donation is tracked on the Ethereum blockchain, providing 
-                    irrefutable proof of your contribution's journey.
-                </p>
-                <a href="{{ url_for('donate') }}" class="btn btn-donate btn-lg text-white">
-                    <i class="fas fa-heart me-2"></i> Support Our Cause
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Impact Cards -->
-<section class="impact-section py-5">
-    <div class="container">
-        <h2 class="text-center mb-5 mission-title">How Your Donations Make an Impact</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 feature-card transparent-card shadow-sm">
-                    <img src="https://pixabay.com/get/gacddebbbb3c3ce55398c7c67d77507d52ea57416d727cdfc74b6740654aa65a1f58528cfc7f5b54fdc3e540d03c3a8aed71e4b8bb5c483a2ddc76eb3de57bfc0_1280.jpg" 
-                         class="card-img-top" alt="Charity Donation">
-                    <div class="card-body">
-                        <h5 class="card-title">Transparent Giving</h5>
-                        <p class="card-text">Every donation is recorded on the Ethereum blockchain, creating a permanent, 
-                            immutable record of your contribution.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 feature-card community-card shadow-sm">
-                    <img src="https://pixabay.com/get/gae2bcf0b2f343315f428cc979c59c2febf7f93080a302d69ed83ef4c020eefde4ba68e616ed993f315239d05376d9cb363711255b3bd8e6bf1d82fd8ae6b19ae_1280.png" 
-                         class="card-img-top" alt="Community Support">
-                    <div class="card-body">
-                        <h5 class="card-title">Community Support</h5>
-                        <p class="card-text">Your donations directly support communities in need, with minimal overhead 
-                            and maximum impact on the ground.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 feature-card innovation-card shadow-sm">
-                    <img src="https://pixabay.com/get/geb59d5c875972a0b66e98c6c23fd6a3b309f1c0bf0cb85337ca1d346750b277215cf7b2ec9c9ec5582947ff4b3d807987eb80700ff319c0fb1386ea4fbe3285e_1280.jpg" 
-                         class="card-img-top" alt="Blockchain Innovation">
-                    <div class="card-body">
-                        <h5 class="card-title">Innovative Solutions</h5>
-                        <p class="card-text">By leveraging blockchain technology, we're pioneering new ways to make charitable 
-                            giving more efficient and trustworthy.</p>
                     </div>
                 </div>
             </div>
@@ -659,23 +1021,25 @@
 </section>
 
 <!-- Call to Action -->
-<section class="cta-gradient py-5 mt-5 text-white">
+<section class="cta-section">
     <div class="floating-eth eth-1">
         <i class="fab fa-ethereum"></i>
     </div>
     <div class="floating-eth eth-2">
         <i class="fab fa-ethereum"></i>
     </div>
-    <div class="container text-center py-4 cta-content">
-        <h2 class="mb-4">Ready to Make a Difference?</h2>
-        <p class="lead mb-4">Your contribution, no matter how small, helps us reach our goal and support communities in need.</p>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="{{ url_for('donate') }}" class="btn btn-light btn-lg">
-                Donate Now <i class="fas fa-arrow-right ms-2"></i>
-            </a>
-            <a href="{{ url_for('technology') }}" class="btn btn-outline-light btn-lg">
-                Learn How It Works
-            </a>
+    <div class="container">
+        <div class="cta-content" data-aos="fade-up">
+            <h2 class="cta-title">Ready to Make a Difference?</h2>
+            <p class="cta-description">Join our community of donors and help make a real impact. Your contribution, no matter how small, can change lives and build a better future for communities in need.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('donate') }}" class="btn hero-btn btn-primary-action">
+                    Donate Now <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+                <a href="{{ url_for('technology') }}" class="btn hero-btn btn-secondary-action">
+                    Learn How It Works
+                </a>
+            </div>
         </div>
     </div>
 </section>
@@ -684,46 +1048,69 @@
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Smooth scroll for the scroll-down arrow
-        const scrollDownArrow = document.querySelector('.scroll-down');
-        if (scrollDownArrow) {
-            scrollDownArrow.addEventListener('click', function() {
-                window.scrollTo({
-                    top: document.querySelector('.welcome-section').offsetTop,
-                    behavior: 'smooth'
-                });
+        // Initialize AOS animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Smooth scroll for the scroll indicator
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', function() {
+                const featuresSection = document.querySelector('.features-section');
+                if (featuresSection) {
+                    featuresSection.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         }
         
-        // Animate counter numbers on scroll
-        const counters = document.querySelectorAll('.counter-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    const text = counter.innerText;
-                    
-                    // Only animate numeric counters
-                    if (!text.includes('ETH')) {
-                        const target = parseInt(text.replace(/\+/g, ''));
-                        let count = 0;
-                        const updateCounter = () => {
-                            if (count < target) {
-                                count += Math.ceil(target / 20);
-                                if (count > target) count = target;
-                                counter.innerText = count + (text.includes('+') ? '+' : '');
-                                setTimeout(updateCounter, 50);
-                            }
-                        };
-                        updateCounter();
-                    }
-                    
-                    observer.unobserve(counter);
-                }
-            });
-        }, { threshold: 0.5 });
+        // Animate counter numbers
+        const counters = document.querySelectorAll('.hero-stat-number');
         
         counters.forEach(counter => {
+            const text = counter.innerText;
+            const hasEth = text.includes('ETH');
+            let target;
+            
+            if (hasEth) {
+                target = parseInt(text.replace(' ETH', ''));
+            } else {
+                target = parseInt(text.replace(/\+/g, ''));
+            }
+            
+            let count = 0;
+            const duration = 2000; // 2 seconds
+            const frameDuration = 1000 / 60; // 60fps
+            const totalFrames = Math.round(duration / frameDuration);
+            const increment = target / totalFrames;
+            
+            const updateCounter = () => {
+                if (count < target) {
+                    count += increment;
+                    if (count > target) count = target;
+                    
+                    if (hasEth) {
+                        counter.innerText = Math.floor(count) + ' ETH';
+                    } else {
+                        counter.innerText = Math.floor(count) + (text.includes('+') ? '+' : '');
+                    }
+                    
+                    requestAnimationFrame(updateCounter);
+                }
+            };
+            
+            // Start animation when in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
             observer.observe(counter);
         });
     });
