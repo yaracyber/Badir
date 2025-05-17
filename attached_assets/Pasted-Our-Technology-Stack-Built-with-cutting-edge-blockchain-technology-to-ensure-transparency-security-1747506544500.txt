@@ -1,0 +1,62 @@
+Our Technology Stack
+Built with cutting-edge blockchain technology to ensure transparency, security, and trust in every donation.
+
+How Does Blockchain Work?
+
+Watch this video to understand the fundamentals of blockchain technology and how it powers our donation platform.
+
+How Does the Blockchain Work? (Step-by-Step)
+1. Many Participants
+A blockchain is a network of many computers (nodes) around the world. Each has a copy of the same data.
+
+2. Transactions Form Blocks
+When someone donates, the transaction is grouped with others into a "block." Each block contains a list of recent transactions.
+
+3. Blocks Are Linked
+Each new block is linked to the previous one, forming a secure "chain" that can't be changed or tampered with.
+
+4. Everyone Verifies
+All nodes check and agree on the new block. If most agree, the block is added to the chain and the data is permanent.
+
+5. Anyone Can Audit
+Because the blockchain is public, anyone can check the donation records for transparency and trust.
+
+Smart Contract Features
+Security
+Advanced encryption and secure processing for every transaction.
+
+Transparency
+Complete visibility into all donation transactions.
+
+Automation
+Smart contracts execute automatically without intermediaries.
+
+Tracking
+Real-time monitoring of all donation activities.
+
+How Smart Contracts Work
+1
+Code Creation
+Smart contract rules are written in code, like a digital recipe that must be followed exactly.
+
+2
+Deployment
+The contract is deployed to the blockchain, making it immutable and transparent.
+
+3
+Execution
+When conditions are met, the contract automatically executes without human intervention.
+
+4
+Verification
+All actions are recorded on the blockchain for permanent verification.
+
+Key Benefits
+Trust & Transparency
+Every transaction is recorded on the blockchain, creating an immutable and transparent record of all donations. This builds trust between donors and recipients.
+
+Security & Reliability
+Advanced cryptography and decentralized verification ensure that all transactions are secure and cannot be altered or tampered with.
+
+Efficiency & Cost-Effectiveness
+By eliminating intermediaries and automating processes, we reduce costs and ensure more of your donation goes directly to the cause.

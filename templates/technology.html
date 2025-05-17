@@ -2,106 +2,309 @@
 
 {% block title %}Technology - Badir{% endblock %}
 
+{% block extra_css %}
+<style>
+    .tech-hero-section {
+        background-color: var(--darkest-color);
+        padding: 150px 0 80px;
+        position: relative;
+        overflow: hidden;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(30, 57, 87, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(199, 169, 94, 0.2) 0%, transparent 50%);
+    }
+    
+    .tech-hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("{{ url_for('static', filename='img/pattern-dots.svg') }}");
+        opacity: 0.05;
+    }
+    
+    .video-container {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        position: relative;
+    }
+
+    .video-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent 90%, rgba(0, 0, 0, 0.2));
+        pointer-events: none;
+    }
+    
+    .tech-section {
+        padding: 100px 0;
+        position: relative;
+    }
+    
+    .dark-section {
+        background-color: var(--darker-color);
+    }
+    
+    .light-section {
+        background-color: var(--darkest-color);
+        background-image: 
+            radial-gradient(circle at 85% 85%, rgba(30, 57, 87, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 15% 15%, rgba(199, 169, 94, 0.1) 0%, transparent 50%);
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+        color: white;
+    }
+    
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(to right, var(--color-gold), var(--color-bright-gold));
+    }
+    
+    .centered-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .section-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        max-width: 800px;
+    }
+    
+    .tech-card {
+        background-color: rgba(20, 32, 46, 0.5);
+        border: 1px solid rgba(199, 169, 94, 0.15);
+        border-radius: 16px;
+        padding: 30px;
+        transition: all 0.3s ease;
+        height: 100%;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .tech-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        border-color: rgba(199, 169, 94, 0.3);
+    }
+    
+    .tech-step-card {
+        background-color: rgba(12, 22, 34, 0.7);
+        border: 1px solid rgba(199, 169, 94, 0.15);
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .tech-step-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        border-color: rgba(199, 169, 94, 0.3);
+    }
+    
+    .step-number {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: linear-gradient(135deg, var(--color-gold), var(--color-bright-gold));
+        color: var(--darkest-color);
+        font-weight: 700;
+        font-size: 1.5rem;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 16px 0 16px;
+    }
+    
+    .feature-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-deep-navy), var(--color-darkest-navy));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative;
+        border: 1px solid rgba(199, 169, 94, 0.3);
+    }
+    
+    .feature-icon i {
+        font-size: 1.8rem;
+        color: var(--color-gold);
+    }
+    
+    .feature-icon::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-gold), transparent 60%);
+        opacity: 0.3;
+        z-index: -1;
+    }
+    
+    .feature-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: white;
+    }
+    
+    .feature-desc {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+    }
+    
+    .smart-contract-steps {
+        counter-reset: step;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .smart-contract-step {
+        position: relative;
+        padding-left: 80px;
+        margin-bottom: 40px;
+        min-height: 60px;
+    }
+    
+    .smart-contract-step::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-gold), var(--color-bright-gold));
+        color: var(--darkest-color);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 5px 15px rgba(199, 169, 94, 0.3);
+    }
+    
+    .step-title {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: white;
+    }
+    
+    .step-desc {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+    }
+    
+    .benefit-card {
+        background: rgba(12, 22, 34, 0.7);
+        border: 1px solid rgba(199, 169, 94, 0.15);
+        border-radius: 16px;
+        padding: 30px;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .benefit-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .benefit-title {
+        color: var(--color-bright-gold);
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .benefit-desc {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, var(--color-deep-navy), var(--color-darkest-navy));
+        border-radius: 16px;
+        padding: 60px 0;
+        position: relative;
+        overflow: hidden;
+        margin-top: 80px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("{{ url_for('static', filename='img/pattern-dots.svg') }}");
+        opacity: 0.05;
+    }
+    
+    .cta-btn {
+        background: linear-gradient(135deg, var(--color-gold), var(--color-bright-gold));
+        color: var(--darkest-color) !important;
+        font-weight: 600;
+        padding: 15px 40px;
+        border-radius: 30px;
+        border: none;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 10px 20px rgba(199, 169, 94, 0.3);
+    }
+    
+    .cta-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(199, 169, 94, 0.4);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <!-- Technology Hero Section -->
-<section class="technology-hero mb-5">
+<section class="tech-hero-section">
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto text-center">
-                <h1 class="display-4 mb-3">Our Technology</h1>
-                <p class="lead">Discover how we leverage blockchain technology to create transparent and efficient donation channels.</p>
+        <div class="row align-items-center">
+            <div class="col-lg-7" data-aos="fade-right">
+                <h1 class="display-4 mb-4">Our Technology Stack</h1>
+                <p class="lead mb-5">Built with cutting-edge blockchain technology to ensure transparency, security, and trust in every donation.</p>
+                <a href="#how-it-works" class="btn cta-btn">Explore Our Technology</a>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Tech Stack Section -->
-<section class="tech-stack-section mb-5">
-    <div class="container">
-        <div class="card shadow">
-            <div class="card-body">
-                <h2 class="text-center mb-4">Our Technology Stack</h2>
-                
-                <div class="row justify-content-center mb-4">
-                    <div class="col-lg-10">
-                        <p class="lead text-center">
-                            Built with cutting-edge blockchain technology, our platform combines the best of web development
-                            and decentralized finance to create a seamless donation experience.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="row row-cols-2 row-cols-md-4 g-4 text-center">
-                    <!-- HTML -->
-                    <div class="col">
-                        <div class="tech-icon p-3">
-                            <i class="fab fa-html5 fa-3x text-danger mb-3"></i>
-                            <h5>HTML5</h5>
-                            <p class="small text-muted">Modern markup</p>
-                        </div>
-                    </div>
-                    
-                    <!-- CSS -->
-                    <div class="col">
-                        <div class="tech-icon p-3">
-                            <i class="fab fa-css3-alt fa-3x text-primary mb-3"></i>
-                            <h5>CSS3</h5>
-                            <p class="small text-muted">Responsive styling</p>
-                        </div>
-                    </div>
-                    
-                    <!-- JavaScript -->
-                    <div class="col">
-                        <div class="tech-icon p-3">
-                            <i class="fab fa-js fa-3x text-warning mb-3"></i>
-                            <h5>JavaScript</h5>
-                            <p class="small text-muted">Dynamic functionality</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Ethereum -->
-                    <div class="col">
-                        <div class="tech-icon p-3">
-                            <i class="fab fa-ethereum fa-3x text-info mb-3"></i>
-                            <h5>Ethereum</h5>
-                            <p class="small text-muted">Blockchain platform</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Bootstrap -->
-                    <div class="col">
-                        <div class="tech-icon p-3">
-                            <i class="fab fa-bootstrap fa-3x text-purple mb-3"></i>
-                            <h5>Bootstrap</h5>
-                            <p class="small text-muted">Responsive framework</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Solidity -->
-                    <div class="col">
-                        <div class="tech-icon p-3">
-                            <i class="fas fa-file-code fa-3x text-secondary mb-3"></i>
-                            <h5>Solidity</h5>
-                            <p class="small text-muted">Smart contract language</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Ethers.js -->
-                    <div class="col">
-                        <div class="tech-icon p-3">
-                            <i class="fas fa-plug fa-3x text-success mb-3"></i>
-                            <h5>Ethers.js</h5>
-                            <p class="small text-muted">Blockchain interaction</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Flask -->
-                    <div class="col">
-                        <div class="tech-icon p-3">
-                            <i class="fab fa-python fa-3x text-info mb-3"></i>
-                            <h5>Flask</h5>
-                            <p class="small text-muted">Lightweight backend</p>
-                        </div>
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="video-container">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/SSo_EIwHSd4" title="How Blockchain Works" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -110,151 +313,167 @@
 </section>
 
 <!-- How Blockchain Works Section -->
-<section class="blockchain-explainer mb-5">
+<section id="how-it-works" class="tech-section light-section">
     <div class="container">
-        <div class="card shadow">
-            <div class="card-body">
-                <h2 class="text-center mb-4">How Does Blockchain Work?</h2>
-                
-                <!-- Video Embed -->
-                <div class="row mb-5">
-                    <div class="col-lg-10 mx-auto">
-                        <div class="ratio ratio-16x9">
-                            <iframe src="https://www.youtube.com/embed/SSo_EIwHSd4" 
-                                    title="Blockchain Explanation" 
-                                    allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Step-by-Step Guide -->
-                <div class="row">
-                    <div class="col-lg-10 mx-auto">
-                        <div class="card mb-4">
-                            <div class="card-header bg-primary text-white">
-                                <h3 class="h5 mb-0">Blockchain Fundamentals: Step-by-Step</h3>
-                            </div>
-                            <div class="card-body">
-                                <ol class="blockchain-steps">
-                                    <li class="mb-4">
-                                        <h4 class="h5">Many participants maintain a shared ledger</h4>
-                                        <p>Blockchain is a distributed ledger technology where multiple computers (nodes) 
-                                           maintain identical copies of the transaction history. This eliminates the need 
-                                           for a central authority to verify transactions.</p>
-                                    </li>
-                                    
-                                    <li class="mb-4">
-                                        <h4 class="h5">Transactions are grouped into blocks</h4>
-                                        <p>Multiple transactions are bundled together into a "block." Each block has a unique 
-                                           cryptographic signature (hash) and contains a reference to the previous block, 
-                                           creating a chain of blocks — hence the name "blockchain."</p>
-                                    </li>
-                                    
-                                    <li class="mb-4">
-                                        <h4 class="h5">Blocks are cryptographically linked</h4>
-                                        <p>Each block contains the cryptographic hash of the previous block, creating an 
-                                           unbroken chain. This makes the blockchain immutable — if someone tries to alter 
-                                           a past transaction, all subsequent blocks would need to be changed, which is 
-                                           computationally impractical.</p>
-                                    </li>
-                                    
-                                    <li>
-                                        <h4 class="h5">Consensus ensures trust and security</h4>
-                                        <p>Blockchain networks use consensus mechanisms (like Proof of Work or Proof of Stake) 
-                                           to agree on the state of the ledger. This replaces the need for trust in a central 
-                                           authority with trust in the mathematical principles that secure the network.</p>
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="row mb-5">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h2 class="section-title">How Does Blockchain Work?</h2>
+                <p class="section-subtitle">Watch this video to understand the fundamentals of blockchain technology and how it powers our donation platform.</p>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- Blockchain Benefits Section -->
-<section class="blockchain-benefits mb-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Benefits of Blockchain for Charity</h2>
         
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Transparency Card -->
-            <div class="col">
-                <div class="card h-100 shadow">
-                    <div class="card-body">
-                        <div class="text-center mb-3">
-                            <i class="fas fa-eye fa-3x text-primary"></i>
-                        </div>
-                        <h3 class="card-title h5 text-center">Complete Transparency</h3>
-                        <p class="card-text">
-                            All donations are recorded on the public blockchain, allowing donors to track exactly where 
-                            their funds go. This creates unprecedented accountability in the charity sector.
-                        </p>
-                    </div>
+        <div class="row">
+            <div class="col-12" data-aos="fade-up">
+                <h3 class="mb-4 text-gold">How Does the Blockchain Work? (Step-by-Step)</h3>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-step-card">
+                    <div class="step-number">1</div>
+                    <h4 class="feature-title">Many Participants</h4>
+                    <p class="feature-desc">A blockchain is a network of many computers (nodes) around the world. Each has a copy of the same data.</p>
                 </div>
             </div>
             
-            <!-- Reduced Overhead Card -->
-            <div class="col">
-                <div class="card h-100 shadow">
-                    <div class="card-body">
-                        <div class="text-center mb-3">
-                            <i class="fas fa-dollar-sign fa-3x text-success"></i>
-                        </div>
-                        <h3 class="card-title h5 text-center">Reduced Overhead</h3>
-                        <p class="card-text">
-                            Smart contracts automate many processes that traditionally require human intervention, 
-                            reducing administrative costs and ensuring more of your donation reaches those in need.
-                        </p>
-                    </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-step-card">
+                    <div class="step-number">2</div>
+                    <h4 class="feature-title">Transactions Form Blocks</h4>
+                    <p class="feature-desc">When someone donates, the transaction is grouped with others into a "block." Each block contains a list of recent transactions.</p>
                 </div>
             </div>
             
-            <!-- Global Access Card -->
-            <div class="col">
-                <div class="card h-100 shadow">
-                    <div class="card-body">
-                        <div class="text-center mb-3">
-                            <i class="fas fa-globe-americas fa-3x text-info"></i>
-                        </div>
-                        <h3 class="card-title h5 text-center">Global Accessibility</h3>
-                        <p class="card-text">
-                            Blockchain technology enables donations from anywhere in the world, helping charities 
-                            reach a wider donor base and provide aid to regions that may be underserved by traditional 
-                            financial systems.
-                        </p>
-                    </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="tech-step-card">
+                    <div class="step-number">3</div>
+                    <h4 class="feature-title">Blocks Are Linked</h4>
+                    <p class="feature-desc">Each new block is linked to the previous one, forming a secure "chain" that can't be changed or tampered with.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="tech-step-card">
+                    <div class="step-number">4</div>
+                    <h4 class="feature-title">Everyone Verifies</h4>
+                    <p class="feature-desc">All nodes check and agree on the new block. If most agree, the block is added to the chain and the data is permanent.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mx-auto" data-aos="fade-up" data-aos-delay="500">
+                <div class="tech-step-card">
+                    <div class="step-number">5</div>
+                    <h4 class="feature-title">Anyone Can Audit</h4>
+                    <p class="feature-desc">Because the blockchain is public, anyone can check the donation records for transparency and trust.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Smart Contracts Explained -->
-<section class="smart-contracts mb-5">
+<!-- Smart Contract Features -->
+<section class="tech-section dark-section">
     <div class="container">
-        <div class="card shadow">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <h2 class="mb-4">Smart Contracts Explained</h2>
-                        <p class="lead">At the heart of our platform is a smart contract — self-executing code that lives on the Ethereum blockchain.</p>
-                        
-                        <p>Smart contracts are:</p>
-                        <ul>
-                            <li><strong>Autonomous</strong> — They execute automatically when conditions are met</li>
-                            <li><strong>Transparent</strong> — Anyone can verify their code and execution</li>
-                            <li><strong>Immutable</strong> — Once deployed, they cannot be changed</li>
-                            <li><strong>Secure</strong> — Cryptographically protected from tampering</li>
-                        </ul>
-                        
-                        <p>Our Badir donation contract handles the entire donation process, from receiving funds to tracking progress toward our goal, all without intermediaries.</p>
+        <div class="row mb-5">
+            <div class="col-lg-12 text-center" data-aos="fade-up">
+                <h2 class="section-title centered-title">Smart Contract Features</h2>
+                <p class="section-subtitle mx-auto">Our smart contracts are the backbone of the Badir platform, providing secure and transparent donation management.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-card text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <div class="col-lg-6">
-                        <img src="https://pixabay.com/get/ge280e114a025dbd1b897bd497d44cbc04edcac5bfa73bd207002407c2fd65873d4a0ea7042e68165b8b784200629f3f1b6b5d5d891aab0ee53154bdf9a129d00_1280.jpg" 
-                             alt="Blockchain Technology" class="img-fluid rounded shadow">
+                    <h4 class="feature-title">Security</h4>
+                    <p class="feature-desc">Advanced encryption and secure processing for every transaction.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-card text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h4 class="feature-title">Transparency</h4>
+                    <p class="feature-desc">Complete visibility into all donation transactions.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="tech-card text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4 class="feature-title">Automation</h4>
+                    <p class="feature-desc">Smart contracts execute automatically without intermediaries.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="tech-card text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="feature-title">Tracking</h4>
+                    <p class="feature-desc">Real-time monitoring of all donation activities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How Smart Contracts Work -->
+<section class="tech-section light-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h2 class="section-title">How Smart Contracts Work</h2>
+                <p class="section-subtitle">Smart contracts are self-executing agreements with the terms written directly into code, automating the donation process.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6" data-aos="fade-right">
+                <ul class="smart-contract-steps">
+                    <li class="smart-contract-step">
+                        <h4 class="step-title">Code Creation</h4>
+                        <p class="step-desc">Smart contract rules are written in code, like a digital recipe that must be followed exactly.</p>
+                    </li>
+                    
+                    <li class="smart-contract-step">
+                        <h4 class="step-title">Deployment</h4>
+                        <p class="step-desc">The contract is deployed to the blockchain, making it immutable and transparent.</p>
+                    </li>
+                    
+                    <li class="smart-contract-step">
+                        <h4 class="step-title">Execution</h4>
+                        <p class="step-desc">When conditions are met, the contract automatically executes without human intervention.</p>
+                    </li>
+                    
+                    <li class="smart-contract-step">
+                        <h4 class="step-title">Verification</h4>
+                        <p class="step-desc">All actions are recorded on the blockchain for permanent verification.</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="tech-card">
+                    <img src="https://pixabay.com/get/ge280e114a025dbd1b897bd497d44cbc04edcac5bfa73bd207002407c2fd65873d4a0ea7042e68165b8b784200629f3f1b6b5d5d891aab0ee53154bdf9a129d00_1280.jpg" alt="Smart Contract Visualization" class="img-fluid rounded mb-4">
+                    <h4 class="text-gold mb-3">Smart Contract Example</h4>
+                    <p class="feature-desc">Our smart contract manages the entire donation process - from collection to disbursement - with complete transparency. The contract maintains a record of all donors, donation amounts, and disbursement of funds.</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <div class="me-3">
+                            <i class="fab fa-ethereum fa-2x text-gold"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-white">Powered by Ethereum</h5>
+                            <p class="mb-0 feature-desc">Built on the world's most established smart contract platform</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -262,18 +481,74 @@
     </div>
 </section>
 
-<!-- Call to Action -->
-<section class="cta-section py-5 bg-primary text-white rounded">
-    <div class="container text-center">
-        <h2 class="mb-4">Ready to Join the Future of Charitable Giving?</h2>
-        <p class="lead mb-4">Experience the transparency and efficiency of blockchain-based donations today.</p>
-        <a href="{{ url_for('donate') }}" class="btn btn-light btn-lg">
-            Make a Donation <i class="fas fa-heart ms-2"></i>
-        </a>
+<!-- Key Benefits -->
+<section class="tech-section dark-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-12 text-center" data-aos="fade-up">
+                <h2 class="section-title centered-title">Key Benefits</h2>
+                <p class="section-subtitle mx-auto">Why blockchain technology represents the future of charitable giving.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Trust & Transparency</h3>
+                    <p class="benefit-desc">Every transaction is recorded on the blockchain, creating an immutable and transparent record of all donations. This builds trust between donors and recipients.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Security & Reliability</h3>
+                    <p class="benefit-desc">Advanced cryptography and decentralized verification ensure that all transactions are secure and cannot be altered or tampered with.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Efficiency & Cost-Effectiveness</h3>
+                    <p class="benefit-desc">By eliminating intermediaries and automating processes, we reduce costs and ensure more of your donation goes directly to the cause.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="container">
+    <div class="cta-section">
+        <div class="container text-center" data-aos="fade-up">
+            <h2 class="mb-4 text-white">Ready to Make a Difference?</h2>
+            <p class="lead mb-5 text-white opacity-75">Join us in revolutionizing charitable giving with the power of blockchain technology.</p>
+            <a href="{{ url_for('donate') }}" class="btn cta-btn">
+                Donate Now <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
     </div>
 </section>
 {% endblock %}
 
 {% block extra_js %}
-<script src="{{ url_for('static', filename='js/technology.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Account for fixed navbar
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
