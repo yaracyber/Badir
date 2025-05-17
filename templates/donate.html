@@ -566,6 +566,166 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{{ url_for('static', filename='js/contract.js') }}"></script>
-<script src="{{ url_for('static', filename='js/donation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/blockchain-connector.js') }}"></script>
+<script>
+// Donation page JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Donation page initialized");
+    
+    // Get UI elements
+    const connectWalletBtn = document.getElementById('connectWallet');
+    const walletStatus = document.getElementById('walletStatus');
+    const donationForm = document.getElementById('donationForm');
+    const progressBar = document.querySelector('#donationProgress .progress-bar');
+    const progressText = document.getElementById('progressText');
+    const transactionStatus = document.getElementById('transactionStatus');
+    const transactionMessage = document.getElementById('transactionMessage');
+    
+    // Set up event listeners
+    if (connectWalletBtn) {
+        connectWalletBtn.addEventListener('click', async function() {
+            connectWalletBtn.disabled = true;
+            connectWalletBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Connecting...';
+            
+            const result = await connectWallet();
+            
+            if (result.success) {
+                // Update UI for connected wallet
+                const address = result.address;
+                updateWalletConnected(address);
+                
+                // Update donation stats
+                updateDonationStats();
+            } else {
+                alert(result.error || "Failed to connect wallet");
+                connectWalletBtn.disabled = false;
+                connectWalletBtn.innerHTML = '<i class="fas fa-wallet me-2"></i> Connect Wallet';
+            }
+        });
+    }
+    
+    // Handle donation form submission
+    if (donationForm) {
+        donationForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!contract) {
+                alert('Please connect your wallet first');
+                return;
+            }
+            
+            const amountInput = document.getElementById('donationAmount');
+            const amount = parseFloat(amountInput.value);
+            
+            if (isNaN(amount) || amount < 0.2 || amount > 20) {
+                alert('Please enter a valid donation amount between 0.2 and 20 ETH');
+                return;
+            }
+            
+            // Show transaction status
+            transactionStatus.style.display = 'block';
+            transactionMessage.innerHTML = 'Processing your donation...';
+            document.querySelector('#transactionStatus .spinner-border').classList.remove('d-none');
+            
+            try {
+                // Make donation
+                const result = await makeDonation(amount);
+                
+                if (result.success) {
+                    transactionMessage.innerHTML = `
+                        <span class="text-success">Success!</span> Your donation of ${amount} ETH has been processed.<br>
+                        <small class="text-white-50">Transaction hash: 
+                            <a href="https://goerli.etherscan.io/tx/${result.hash}" 
+                               target="_blank" rel="noopener noreferrer" class="text-gold">
+                                ${result.hash.substring(0, 6)}...${result.hash.substring(62)}
+                            </a>
+                        </small>
+                    `;
+                    document.querySelector('#transactionStatus .spinner-border').classList.add('d-none');
+                    
+                    // Reset form
+                    donationForm.reset();
+                    
+                    // Update donation stats
+                    updateDonationStats();
+                }
+            } catch (error) {
+                console.error("Donation error:", error);
+                transactionMessage.innerHTML = `
+                    <span class="text-danger">Error!</span> ${error.message || 'Failed to process donation'}
+                `;
+                document.querySelector('#transactionStatus .spinner-border').classList.add('d-none');
+            }
+        });
+    }
+    
+    // Update wallet connected UI
+    function updateWalletConnected(account) {
+        // Format the address
+        const formattedAddress = formatAddress(account);
+        
+        // Update connect wallet button
+        if (connectWalletBtn) {
+            connectWalletBtn.disabled = false;
+            connectWalletBtn.innerHTML = `<i class="fas fa-check-circle me-2"></i> ${formattedAddress}`;
+            connectWalletBtn.classList.add('connected');
+        }
+        
+        // Update wallet status display
+        if (walletStatus) {
+            walletStatus.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-check-circle me-3 text-success"></i>
+                    <div>
+                        <p class="text-white mb-1">Wallet Connected</p>
+                        <div class="wallet-address">${account}</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Show donation form
+        if (donationForm) {
+            donationForm.style.display = 'block';
+        }
+    }
+    
+    // Update donation stats from smart contract
+    async function updateDonationStats() {
+        try {
+            // Get total donations
+            const totalAmount = await getTotalDonations();
+            
+            // Update progress bar
+            const percentage = Math.min(100, (parseFloat(totalAmount) / 10) * 100);
+            if (progressBar) {
+                progressBar.style.width = percentage + '%';
+                progressBar.setAttribute('aria-valuenow', percentage);
+                progressBar.textContent = percentage.toFixed(1) + '%';
+            }
+            
+            if (progressText) {
+                progressText.textContent = `${parseFloat(totalAmount).toFixed(2)} ETH of 10 ETH`;
+            }
+            
+            // Update total donation amount display if available
+            const totalAmountElement = document.getElementById('totalAmount');
+            if (totalAmountElement) {
+                totalAmountElement.textContent = `${parseFloat(totalAmount).toFixed(2)} ETH`;
+            }
+            
+            // Get charity address
+            const charityAddress = await getCharityAddress();
+            if (charityAddress) {
+                const charityAddressElement = document.getElementById('charityAddress');
+                if (charityAddressElement) {
+                    charityAddressElement.textContent = charityAddress;
+                }
+            }
+        } catch (error) {
+            console.error("Error updating donation stats:", error);
+        }
+    }
+});
+</script>
 {% endblock %}
