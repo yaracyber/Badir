@@ -11,6 +11,11 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     
@@ -18,9 +23,9 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">Badir</a>
+            <a class="navbar-brand" href="{{ url_for('home') }}">BADIR</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,15 +34,15 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/' %}active{% endif %}" 
-                           href="{{ url_for('home') }}">🏠 Home</a>
+                           href="{{ url_for('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/donate' %}active{% endif %}" 
-                           href="{{ url_for('donate') }}">💝 Donate</a>
+                           href="{{ url_for('donate') }}">Donate</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/technology' %}active{% endif %}" 
-                           href="{{ url_for('technology') }}">⚡ Technology</a>
+                           href="{{ url_for('technology') }}">Technology</a>
                     </li>
                 </ul>
             </div>
@@ -50,34 +55,34 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
+    <footer class="py-4 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>Badir</h5>
+                    <h5 class="text-gold">BADIR</h5>
                     <p>Supporting communities through blockchain technology</p>
                 </div>
                 <div class="col-md-4">
-                    <h5>Quick Links</h5>
+                    <h5 class="text-gold">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{{ url_for('home') }}" class="text-white">🏠 Home</a></li>
-                        <li><a href="{{ url_for('donate') }}" class="text-white">💝 Donate</a></li>
-                        <li><a href="{{ url_for('technology') }}" class="text-white">⚡ Technology</a></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('donate') }}">Donate</a></li>
+                        <li><a href="{{ url_for('technology') }}">Technology</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5>Connect</h5>
+                    <h5 class="text-gold">Connect</h5>
                     <div class="social-icons">
-                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-github"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-telegram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2023 Badir. All rights reserved.</p>
+                    <p class="mb-0">&copy; 2025 Badir. All rights reserved.</p>
                 </div>
             </div>
         </div>

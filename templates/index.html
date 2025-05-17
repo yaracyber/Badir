@@ -5,7 +5,7 @@
 {% block extra_css %}
 <style>
     .gradient-hero {
-        background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+        background: linear-gradient(135deg, #14202E 0%, #1E3957 100%);
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         overflow: hidden;
@@ -29,12 +29,13 @@
     }
     
     .hero-title {
-        background: linear-gradient(to right, #fff, #e0e0e0);
+        background: linear-gradient(to right, #fff, #C7A95E);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         color: transparent;
         font-weight: 800;
+        font-family: 'Playfair Display', serif;
     }
     
     .feature-card {
@@ -69,27 +70,40 @@
     }
     
     .transparent-card .card-title::after {
-        background: linear-gradient(to right, #3498db, #2ecc71);
+        background: linear-gradient(to right, #1E3957, #C7A95E);
     }
     
     .community-card .card-title::after {
-        background: linear-gradient(to right, #e74c3c, #f39c12);
+        background: linear-gradient(to right, #1E3957, #C7A95E);
     }
     
     .innovation-card .card-title::after {
-        background: linear-gradient(to right, #9b59b6, #3498db);
+        background: linear-gradient(to right, #1E3957, #C7A95E);
     }
     
     .mission-gradient {
         background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+    
+    .mission-gradient::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, #1E3957, #C7A95E);
+        border-radius: 0 0 15px 15px;
     }
     
     .mission-title {
         position: relative;
         display: inline-block;
         margin-bottom: 1.5rem;
+        color: #1E3957;
     }
     
     .mission-title::after {
@@ -100,35 +114,36 @@
         transform: translateX(-50%);
         width: 80px;
         height: 3px;
-        background: linear-gradient(to right, #3498db, #2ecc71);
+        background: linear-gradient(to right, #1E3957, #C7A95E);
     }
     
     .btn-donate {
-        background: linear-gradient(to right, #3498db, #2ecc71);
+        background: linear-gradient(to right, #C7A95E, #D4B267) !important;
         border: none;
-        box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        box-shadow: 0 4px 15px rgba(199, 169, 94, 0.3);
         transition: all 0.3s ease;
+        color: #14202E !important;
     }
     
     .btn-donate:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        box-shadow: 0 8px 20px rgba(199, 169, 94, 0.4);
     }
     
     .btn-secondary-gradient {
-        background: linear-gradient(to right, #e74c3c, #f39c12);
+        background: linear-gradient(to right, #1E3957, #2B4257);
         border: none;
-        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        box-shadow: 0 4px 15px rgba(30, 57, 87, 0.3);
         transition: all 0.3s ease;
     }
     
     .btn-secondary-gradient:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+        box-shadow: 0 8px 20px rgba(30, 57, 87, 0.4);
     }
     
     .stats-counter {
-        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        background: linear-gradient(135deg, #1E3957 0%, #14202E 100%);
         border-radius: 15px;
         padding: 3rem 0;
         position: relative;
@@ -158,7 +173,7 @@
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        background: linear-gradient(to right, #3498db, #2ecc71);
+        background: linear-gradient(to right, #C7A95E, #D4B267);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -166,12 +181,12 @@
     }
     
     .counter-label {
-        color: #ecf0f1;
+        color: #ECF0F5;
         font-weight: 500;
     }
     
     .cta-gradient {
-        background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+        background: linear-gradient(135deg, #14202E 0%, #1E3957 100%);
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         overflow: hidden;
@@ -197,7 +212,7 @@
     .floating-eth {
         position: absolute;
         font-size: 6rem;
-        color: rgba(255, 255, 255, 0.1);
+        color: rgba(199, 169, 94, 0.1);
         z-index: 0;
     }
     
@@ -233,7 +248,7 @@
         bottom: 30px;
         left: 50%;
         transform: translateX(-50%);
-        color: white;
+        color: #C7A95E;
         font-size: 1.5rem;
         animation: bounce 2s infinite;
         cursor: pointer;
@@ -253,24 +268,22 @@
     }
     
     .welcome-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        background: linear-gradient(135deg, #f8f9fa 0%, #eef2f7 100%);
         border-radius: 15px;
         padding: 3rem;
         margin-top: 3rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         position: relative;
         overflow: hidden;
+        border-left: 5px solid #C7A95E;
     }
     
     .welcome-title {
         position: relative;
         font-weight: 800;
         margin-bottom: 1.5rem;
-        background: linear-gradient(45deg, #3498db, #2ecc71);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        display: inline-block;
+        color: #1E3957;
+        font-family: 'Playfair Display', serif;
     }
     
     .welcome-text {
@@ -314,8 +327,8 @@
         position: absolute;
         top: 15px;
         right: 15px;
-        background: rgba(44, 62, 80, 0.85);
-        color: white;
+        background: rgba(20, 32, 46, 0.85);
+        color: #C7A95E;
         padding: 5px 10px;
         border-radius: 20px;
         font-size: 0.8rem;
@@ -325,7 +338,7 @@
     .campaign-progress {
         height: 8px;
         border-radius: 4px;
-        background: #ecf0f1;
+        background: #ECF0F5;
         margin: 15px 0;
         overflow: hidden;
     }
@@ -336,33 +349,35 @@
     }
     
     .progress-gaza {
-        background: linear-gradient(to right, #e74c3c, #c0392b);
+        background: linear-gradient(to right, #1E3957, #2B4257);
         width: 45%;
     }
     
     .progress-palestine {
-        background: linear-gradient(to right, #3498db, #2980b9);
+        background: linear-gradient(to right, #1E3957, #2B4257);
         width: 50%;
     }
     
     .progress-healthcare {
-        background: linear-gradient(to right, #2ecc71, #27ae60);
+        background: linear-gradient(to right, #1E3957, #2B4257);
         width: 35%;
     }
     
     .campaign-stats {
         display: flex;
         justify-content: space-between;
-        color: #7f8c8d;
+        color: #1E3957;
         font-size: 0.9rem;
         margin-bottom: 15px;
+        font-weight: 500;
     }
     
     .campaign-title {
         font-weight: 700;
         font-size: 1.3rem;
         margin-bottom: 10px;
-        color: #2c3e50;
+        color: #1E3957;
+        font-family: 'Playfair Display', serif;
     }
     
     .campaign-section-title {
@@ -370,7 +385,8 @@
         display: inline-block;
         font-weight: 800;
         margin-bottom: 2.5rem;
-        color: #2c3e50;
+        color: #1E3957;
+        font-family: 'Playfair Display', serif;
     }
     
     .campaign-section-title::after {
@@ -380,14 +396,39 @@
         left: 0;
         width: 80px;
         height: 4px;
-        background: linear-gradient(to right, #3498db, #2ecc71);
+        background: linear-gradient(to right, #1E3957, #C7A95E);
         border-radius: 2px;
     }
     
     .campaign-description {
-        color: #34495e;
+        color: #2B4257;
         margin-bottom: 15px;
         line-height: 1.6;
+    }
+    
+    /* Gold accents */
+    .gold-accent {
+        color: #C7A95E;
+    }
+    
+    /* Navy backgrounds */
+    .bg-navy {
+        background-color: #1E3957;
+    }
+    
+    .bg-dark-navy {
+        background-color: #14202E;
+    }
+    
+    /* Text elements */
+    .display-4 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+    }
+    
+    .lead {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
     }
 </style>
 {% endblock %}
