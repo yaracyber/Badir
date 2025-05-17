@@ -1,8 +1,28 @@
-{% extends "layout.html" %}
-
-{% block title %}Donate - Badir{% endblock %}
-
-{% block extra_css %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Badir</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+    
+    
 <style>
     .donate-hero {
         background-color: var(--darkest-color);
@@ -306,9 +326,41 @@
         flex-shrink: 0;
     }
 </style>
-{% endblock %}
 
-{% block content %}
+</head>
+<body class="dark-theme">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid px-4 px-lg-5">
+            <a class="navbar-brand" href="/">
+                <span class="logo-text">B<span class="logo-small">ADIR</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " 
+                           href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" 
+                           href="/donate">Donate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " 
+                           href="/technology">Technology</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
 <section class="donate-hero">
     <div class="container">
         <div class="row">
@@ -316,7 +368,7 @@
                 <h1>Support Our Blockchain Initiative</h1>
                 <p>Your Ethereum donations directly fund humanitarian efforts with complete transparency, security, and real-time tracking of every contribution.</p>
                 <div class="mt-5">
-                    <button id="connectWallet" class="donate-btn" style="font-size: 18px; padding: 15px 30px;">
+                    <button id="connectWallet" class="donate-btn">
                         <i class="fas fa-wallet me-2"></i> Connect Wallet
                     </button>
                 </div>
@@ -511,11 +563,151 @@
     </div>
 </section>
 
+<!-- Recent Donors -->
+<section class="recent-donors mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Why Donate with Blockchain?</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-lock fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Transparency</h5>
+                                        <p>All transactions are recorded on the blockchain and can't be altered, ensuring your donation reaches its destination.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-hand-holding-usd fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Lower Fees</h5>
+                                        <p>By cutting out traditional payment processors, more of your donation goes directly to the cause.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-globe fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Global Access</h5>
+                                        <p>Anyone with internet access and a digital wallet can donate, regardless of location or banking status.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Security</h5>
+                                        <p>Blockchain's cryptographic security ensures your donation and personal information remain secure.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
-{% endblock %}
+    </main>
 
-{% block extra_js %}
-<script src="{{ url_for('static', filename='js/contract.js') }}"></script>
-<script src="{{ url_for('static', filename='js/donation.js') }}"></script>
-{% endblock %}
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12 text-center mb-4">
+                    <div class="footer-logo">
+                        <span class="logo-text">B<span class="logo-small">ADIR</span></span>
+                    </div>
+                    <div class="footer-divider">
+                        <span class="footer-divider-line"></span>
+                        <span class="footer-divider-icon"><i class="fas fa-circle"></i></span>
+                        <span class="footer-divider-line"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-gold footer-heading">About Us</h5>
+                    <p class="footer-text">Supporting communities through transparent blockchain technology, ensuring your donations make the maximum impact where needed most.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-gold footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="/"><i class="fas fa-angle-right me-2"></i>Home</a></li>
+                        <li><a href="/donate"><i class="fas fa-angle-right me-2"></i>Donate</a></li>
+                        <li><a href="/technology"><i class="fas fa-angle-right me-2"></i>Technology</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right me-2"></i>Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right me-2"></i>Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-gold footer-heading">Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="mb-1">Contact us at:</p>
+                        <p class="text-gold fw-bold">contact@badir.org</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright-text">&copy; 2025 Badir. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Ethers.js -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.6.umd.min.js" type="application/javascript"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 50
+            });
+        });
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="/static/js/app.js"></script>
+    
+    
+<script src="/static/js/contract.js"></script>
+<script src="/static/js/donation.js"></script>
+
+</body>
+</html>
