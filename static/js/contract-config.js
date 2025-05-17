@@ -3,8 +3,11 @@
  * This file contains the contract ABI and addresses configuration
  */
 
+// Contract address (update this after deployment)
+const CONTRACT_ADDRESS = "0x2EA00bE7554d34207b07F3a073d44CD5216C0D2F";
+
 // Contract ABI (Application Binary Interface)
-const donationContractABI = [
+const CONTRACT_ABI = [
     {
         "inputs": [
             {

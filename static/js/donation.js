@@ -5,7 +5,11 @@
  * including wallet connection, donation processing, and contract interactions
  */
 
+import { ethers } from "https://cdn.jsdelivr.net/npm/ethers@6.6.0/dist/ethers.min.js";
+
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("Donation page initialized");
+    
     // UI Elements
     const connectWalletBtn = document.getElementById('connectWallet');
     const walletStatus = document.getElementById('walletStatus');
