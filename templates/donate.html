@@ -434,73 +434,77 @@
         <div class="row">
             <!-- Highest Donation Card -->
             <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow h-100 donation-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Highest Donation</h5>
-                        <p class="card-text text-muted small">Owner Only</p>
-                        <div class="contract-info mb-3">
-                            <div id="highestDonationInfo">
-                                <p>Connect wallet to view information</p>
-                            </div>
-                        </div>
-                        <button id="getHighestDonation" class="btn btn-outline-primary btn-sm w-100">
-                            Get Highest Donation
-                        </button>
+                <div class="donation-card h-100">
+                    <div class="campaign-icon mb-3">
+                        <i class="fas fa-trophy"></i>
                     </div>
+                    <h5 class="text-white mb-2">Highest Donation</h5>
+                    <p class="text-gold small mb-3">Owner Only</p>
+                    <div class="wallet-info mb-3">
+                        <div id="highestDonationInfo">
+                            <p class="text-white-50">Connect wallet to view information</p>
+                        </div>
+                    </div>
+                    <button id="getHighestDonation" class="donate-btn btn-sm w-100">
+                        <i class="fas fa-search-dollar me-2"></i> View Highest Donation
+                    </button>
                 </div>
             </div>
             
             <!-- Total Donations Card -->
             <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow h-100 donation-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Donations</h5>
-                        <p class="card-text text-muted small">Public Information</p>
-                        <div class="contract-info mb-3">
-                            <div id="totalDonationsInfo">
-                                <p>Connect wallet to view information</p>
-                            </div>
-                        </div>
-                        <button id="getTotalDonations" class="btn btn-outline-primary btn-sm w-100">
-                            Get Total Donations
-                        </button>
+                <div class="donation-card h-100">
+                    <div class="campaign-icon mb-3">
+                        <i class="fas fa-chart-pie"></i>
                     </div>
+                    <h5 class="text-white mb-2">Total Donations</h5>
+                    <p class="text-gold small mb-3">Public Information</p>
+                    <div class="wallet-info mb-3">
+                        <div id="totalDonationsInfo">
+                            <p class="text-white-50">Connect wallet to view information</p>
+                        </div>
+                    </div>
+                    <button id="getTotalDonations" class="donate-btn btn-sm w-100">
+                        <i class="fas fa-calculator me-2"></i> View Total Donations
+                    </button>
                 </div>
             </div>
             
             <!-- Charity Address Card -->
             <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow h-100 donation-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Charity Address</h5>
-                        <p class="card-text text-muted small">Public Information</p>
-                        <div class="contract-info mb-3">
-                            <div id="charityAddressInfo">
-                                <p>Connect wallet to view information</p>
-                            </div>
-                        </div>
-                        <button id="getCharityAddress" class="btn btn-outline-primary btn-sm w-100">
-                            Get Charity Address
-                        </button>
+                <div class="donation-card h-100">
+                    <div class="campaign-icon mb-3">
+                        <i class="fas fa-building"></i>
                     </div>
+                    <h5 class="text-white mb-2">Charity Address</h5>
+                    <p class="text-gold small mb-3">Public Information</p>
+                    <div class="wallet-info mb-3">
+                        <div id="charityAddressInfo">
+                            <p class="text-white-50">Connect wallet to view information</p>
+                        </div>
+                    </div>
+                    <button id="getCharityAddress" class="donate-btn btn-sm w-100">
+                        <i class="fas fa-address-card me-2"></i> View Charity Address
+                    </button>
                 </div>
             </div>
             
             <!-- Fundraising Goal Card -->
             <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow h-100 donation-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Fundraising Goal</h5>
-                        <p class="card-text text-muted small">Public Information</p>
-                        <div class="contract-info mb-3">
-                            <div id="fundraisingGoalInfo">
-                                <p>Our current goal is 10 ETH</p>
-                            </div>
-                        </div>
-                        <button disabled class="btn btn-outline-secondary btn-sm w-100">
-                            Read Only
-                        </button>
+                <div class="donation-card h-100">
+                    <div class="campaign-icon mb-3">
+                        <i class="fas fa-bullseye"></i>
                     </div>
+                    <h5 class="text-white mb-2">Fundraising Goal</h5>
+                    <p class="text-gold small mb-3">Public Information</p>
+                    <div class="wallet-info mb-3">
+                        <div id="fundraisingGoalInfo">
+                            <p class="text-white-50">Our current goal is 10 ETH</p>
+                        </div>
+                    </div>
+                    <button disabled class="donate-btn btn-sm w-100 opacity-75">
+                        <i class="fas fa-lock me-2"></i> Read Only
+                    </button>
                 </div>
             </div>
         </div>
