@@ -184,19 +184,47 @@ const contractConfig = {
     }
 };
 
-// Instructions for deploying the contract on Ganache:
+// Instructions for deploying the contract with Hardhat on Ganache:
 /*
 1. Open Ganache and make sure it's running
-2. Connect MetaMask to Ganache (Network ID: 1337, RPC URL: http://127.0.0.1:7545)
-3. Using Remix IDE (https://remix.ethereum.org):
-   - Create a new file named Donation.sol
-   - Copy your contract code into the file
-   - Compile the contract
-   - Go to the "Deploy & Run Transactions" tab
-   - Select "Injected Web3" as environment (connects to MetaMask)
-   - Enter a charity address parameter (use one of your Ganache accounts)
-   - Deploy the contract
-4. Copy the deployed contract address here
+2. In your Hardhat project:
+   - Make sure your hardhat.config.js includes Ganache network:
+     
+     networks: {
+       ganache: {
+         url: "http://127.0.0.1:7545",
+         accounts: {
+           mnemonic: "your ganache mnemonic here" // Find this in Ganache UI
+         }
+       }
+     }
+   
+   - Create your deployment script in scripts/deploy.js:
+     
+     async function main() {
+       const [deployer] = await ethers.getSigners();
+       console.log("Deploying contract with account:", deployer.address);
+       
+       // Get charity address to use as constructor parameter
+       const charityAddress = "0x..."; // Use one of your Ganache accounts
+       
+       const Donation = await ethers.getContractFactory("Donation");
+       const donation = await Donation.deploy(charityAddress);
+       await donation.deployed();
+       
+       console.log("Donation contract deployed to:", donation.address);
+     }
+     
+     main()
+       .then(() => process.exit(0))
+       .catch((error) => {
+         console.error(error);
+         process.exit(1);
+       });
+   
+   - Deploy with: npx hardhat run scripts/deploy.js --network ganache
+   
+3. Copy the deployed contract address here
 */
 
 // Set current environment
