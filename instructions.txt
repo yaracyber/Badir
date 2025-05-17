@@ -1,0 +1,176 @@
+========================================================
+BADIR BLOCKCHAIN CHARITY PLATFORM - SETUP INSTRUCTIONS
+========================================================
+
+This guide will help you set up and run the Badir Blockchain Charity Platform
+from beginning to end, including both the web application and smart contract.
+
+----------------------------------------------------------
+PREREQUISITES
+----------------------------------------------------------
+
+1. Python 3.9+ installed
+2. Node.js and npm installed
+3. MetaMask browser extension
+4. Git (optional, for cloning)
+
+----------------------------------------------------------
+STEP 1: GET THE PROJECT
+----------------------------------------------------------
+
+Either download the project as a ZIP file or clone the repository:
+
+git clone [repository-url]
+cd badir-blockchain-charity
+
+----------------------------------------------------------
+STEP 2: SET UP THE WEB APPLICATION
+----------------------------------------------------------
+
+1. Install Python dependencies:
+
+   pip install flask flask-login flask-sqlalchemy email-validator gunicorn psycopg2-binary
+
+2. Set up environment variables (create a .env file in the project root):
+
+   SESSION_SECRET=your_secret_key_here
+   DATABASE_URL=sqlite:///badir.db
+
+----------------------------------------------------------
+STEP 3: SET UP THE BLOCKCHAIN ENVIRONMENT
+----------------------------------------------------------
+
+1. Install Hardhat and Ethereum development dependencies:
+
+   npm install --save-dev hardhat @nomiclabs/hardhat-waffle @nomiclabs/hardhat-ethers ethereum-waffle chai ethers dotenv
+
+2. Download and install Ganache from: https://trufflesuite.com/ganache/
+
+3. Launch Ganache and create a new workspace
+   - Click "NEW WORKSPACE"
+   - Give it a name (e.g., "Badir")
+   - Keep the default settings (RPC URL: HTTP://127.0.0.1:7545)
+   - Save the workspace
+
+4. Make note of your Ganache mnemonic (12-word recovery phrase) and at least one private key
+   - Click the key icon next to an address to view its private key
+
+----------------------------------------------------------
+STEP 4: DEPLOY THE SMART CONTRACT
+----------------------------------------------------------
+
+1. Compile the smart contract:
+
+   npx hardhat compile
+
+2. Deploy to Ganache:
+
+   npx hardhat run scripts/deploy.js --network ganache
+
+3. Note the deployed contract address from the console output:
+   
+   Example: "Donation contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3"
+
+4. Update the contract address in the configuration:
+   
+   - Open static/js/contract-config.js
+   - Update the contractAddress in the development section with your deployed contract address
+
+----------------------------------------------------------
+STEP 5: RUN THE WEB APPLICATION
+----------------------------------------------------------
+
+Start the Flask web server:
+
+gunicorn --bind 0.0.0.0:5000 --reload main:app
+
+Or alternatively:
+
+python main.py
+
+The application should now be running at: http://localhost:5000
+
+----------------------------------------------------------
+STEP 6: CONNECT METAMASK TO GANACHE
+----------------------------------------------------------
+
+1. Install MetaMask browser extension if you don't have it
+   (https://metamask.io/download/)
+
+2. Add Ganache network to MetaMask:
+   - Click the network dropdown at the top of MetaMask
+   - Select "Add Network" -> "Add a network manually"
+   - Enter these details:
+     - Network Name: Ganache
+     - New RPC URL: http://127.0.0.1:7545
+     - Chain ID: 1337
+     - Currency Symbol: ETH
+   - Click "Save"
+
+3. Import a Ganache account into MetaMask:
+   - In MetaMask, click your account icon -> "Import Account"
+   - Paste a private key from your Ganache instance
+   - Click "Import"
+   - You should now have a Ganache account with 100 ETH
+
+----------------------------------------------------------
+STEP 7: TEST THE APPLICATION
+----------------------------------------------------------
+
+1. Open your browser to http://localhost:5000
+
+2. Navigate to the Donate page
+
+3. Connect your MetaMask wallet:
+   - Click "Connect Wallet"
+   - Select your imported Ganache account
+   - Approve the connection
+
+4. Make a test donation:
+   - Enter an amount between 0.2 and 20 ETH
+   - Click "Submit Donation"
+   - Approve the transaction in MetaMask
+   - Wait for confirmation
+
+5. View the donation on the blockchain:
+   - Check donation progress on the website
+   - Confirm transaction in MetaMask activity
+   - Verify the balance change in Ganache
+
+----------------------------------------------------------
+TROUBLESHOOTING
+----------------------------------------------------------
+
+1. "Contract not deployed" error:
+   - Make sure Ganache is running
+   - Verify the contract address in contract-config.js
+   - Try redeploying the contract
+
+2. MetaMask connection issues:
+   - Ensure you're on the Ganache network in MetaMask
+   - Check that the RPC URL and Chain ID match Ganache settings
+
+3. Transaction failures:
+   - Ensure your donation amount is between 0.2 and 20 ETH
+   - Check that your account has enough ETH for gas fees
+   - Restart Ganache if it's been running for a long time
+
+4. Web application not loading:
+   - Verify the Flask server is running
+   - Check console for JavaScript errors
+   - Make sure all dependencies are installed
+
+----------------------------------------------------------
+ADDITIONAL INFORMATION
+----------------------------------------------------------
+
+- The smart contract is located at: contracts/Donation.sol
+- Frontend JavaScript for blockchain integration: static/js/contract-integration.js
+- Donation page functionality: static/js/donation.js
+
+For more advanced users:
+- You can run tests with: npx hardhat test
+- Deploy to Sepolia testnet by updating .env with your credentials and running:
+  npx hardhat run scripts/deploy.js --network sepolia
+
+========================================================
