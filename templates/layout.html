@@ -100,13 +100,16 @@
                         <a class="nav-link {% if request.path == '/technology' %}active{% endif %}" 
                            href="{{ url_for('technology') }}">Technology</a>
                     </li>
+                    <li class="nav-item d-block d-lg-none mt-3">
+                        <button id="mobileConnectWallet" class="navbar-connect-btn w-100">
+                            <i class="fas fa-wallet me-2"></i> Connect Wallet
+                        </button>
+                    </li>
                 </ul>
-                <div class="ms-lg-4 mt-3 mt-lg-0">
-                    <button id="navConnectWallet" class="navbar-connect-btn">
-                        <i class="fas fa-wallet me-2"></i> Connect Wallet
-                    </button>
-                </div>
             </div>
+            <button id="navConnectWallet" class="navbar-connect-btn ms-2 d-none d-lg-block">
+                <i class="fas fa-wallet me-2"></i> Connect Wallet
+            </button>
         </div>
     </nav>
 
@@ -192,67 +195,88 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const navConnectWalletBtn = document.getElementById('navConnectWallet');
+            const mobileConnectWalletBtn = document.getElementById('mobileConnectWallet');
             
-            if (navConnectWalletBtn) {
-                navConnectWalletBtn.addEventListener('click', async function() {
-                    try {
-                        // Check if MetaMask is installed
-                        if (typeof window.ethereum === 'undefined') {
-                            alert('MetaMask is not installed. Please install MetaMask to connect your wallet.');
-                            window.open('https://metamask.io/download.html', '_blank');
-                            return;
-                        }
-                        
-                        // Request account access
-                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                        const account = accounts[0];
-                        
-                        // Show success message
-                        showWalletConnected(account);
-                        
-                        // Trigger custom event for other pages to handle
-                        document.dispatchEvent(new CustomEvent('walletConnected', { 
-                            detail: { account: account }
-                        }));
-                        
-                        // Handle account changes
-                        window.ethereum.on('accountsChanged', function (accounts) {
-                            if (accounts.length === 0) {
-                                // User disconnected their wallet
-                                showWalletDisconnected();
-                            } else {
-                                // User switched accounts
-                                showWalletConnected(accounts[0]);
-                            }
-                        });
-                        
-                    } catch (error) {
-                        console.error('Error connecting to MetaMask:', error);
-                        alert('Failed to connect to MetaMask. Please try again.');
+            // Connect wallet function
+            async function connectWallet() {
+                try {
+                    // Check if MetaMask is installed
+                    if (typeof window.ethereum === 'undefined') {
+                        alert('MetaMask is not installed. Please install MetaMask to connect your wallet.');
+                        window.open('https://metamask.io/download.html', '_blank');
+                        return;
                     }
-                });
+                    
+                    // Request account access
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const account = accounts[0];
+                    
+                    // Show success message
+                    updateButtonsState(account);
+                    
+                    // Trigger custom event for other pages to handle
+                    document.dispatchEvent(new CustomEvent('walletConnected', { 
+                        detail: { account: account }
+                    }));
+                    
+                    // Handle account changes
+                    window.ethereum.on('accountsChanged', function (accounts) {
+                        if (accounts.length === 0) {
+                            // User disconnected their wallet
+                            resetButtonsState();
+                        } else {
+                            // User switched accounts
+                            updateButtonsState(accounts[0]);
+                        }
+                    });
+                    
+                } catch (error) {
+                    console.error('Error connecting to MetaMask:', error);
+                    alert('Failed to connect to MetaMask. Please try again.');
+                }
             }
             
-            function showWalletConnected(account) {
-                if (!navConnectWalletBtn) return;
-                
+            // Add click event to both buttons
+            if (navConnectWalletBtn) {
+                navConnectWalletBtn.addEventListener('click', connectWallet);
+            }
+            
+            if (mobileConnectWalletBtn) {
+                mobileConnectWalletBtn.addEventListener('click', connectWallet);
+            }
+            
+            // Update both buttons when wallet is connected
+            function updateButtonsState(account) {
                 // Format the address to show only first 6 and last 4 characters
                 const formattedAddress = account.slice(0, 6) + '...' + account.slice(-4);
                 
-                navConnectWalletBtn.innerHTML = `<i class="fas fa-check-circle me-2"></i> ${formattedAddress}`;
-                navConnectWalletBtn.classList.add('connected');
-            }
-            
-            function showWalletDisconnected() {
-                if (!navConnectWalletBtn) return;
+                if (navConnectWalletBtn) {
+                    navConnectWalletBtn.innerHTML = `<i class="fas fa-check-circle me-2"></i> ${formattedAddress}`;
+                    navConnectWalletBtn.classList.add('connected');
+                }
                 
-                navConnectWalletBtn.innerHTML = `<i class="fas fa-wallet me-2"></i> Connect Wallet`;
-                navConnectWalletBtn.classList.remove('connected');
+                if (mobileConnectWalletBtn) {
+                    mobileConnectWalletBtn.innerHTML = `<i class="fas fa-check-circle me-2"></i> ${formattedAddress}`;
+                    mobileConnectWalletBtn.classList.add('connected');
+                }
             }
             
-            // Check if already connected
+            // Reset both buttons when wallet is disconnected
+            function resetButtonsState() {
+                if (navConnectWalletBtn) {
+                    navConnectWalletBtn.innerHTML = `<i class="fas fa-wallet me-2"></i> Connect Wallet`;
+                    navConnectWalletBtn.classList.remove('connected');
+                }
+                
+                if (mobileConnectWalletBtn) {
+                    mobileConnectWalletBtn.innerHTML = `<i class="fas fa-wallet me-2"></i> Connect Wallet`;
+                    mobileConnectWalletBtn.classList.remove('connected');
+                }
+            }
+            
+            // Check if already connected when page loads
             if (window.ethereum && window.ethereum.selectedAddress) {
-                showWalletConnected(window.ethereum.selectedAddress);
+                updateButtonsState(window.ethereum.selectedAddress);
             }
         });
     </script>
