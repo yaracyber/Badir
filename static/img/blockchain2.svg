@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <style>
+    .block {
+      fill: #3498db;
+      stroke: #2980b9;
+      stroke-width: 1;
+    }
+    .block-alt {
+      fill: #2ecc71;
+      stroke: #27ae60;
+      stroke-width: 1;
+    }
+    .arrow {
+      fill: none;
+      stroke: #2c3e50;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      marker-end: url(#arrowhead);
+    }
+    .icon {
+      fill: #ecf0f1;
+    }
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 3px;
+      fill: #2c3e50;
+      text-anchor: middle;
+    }
+  </style>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto">
+      <path d="M0,0 L0,4 L4,2 Z" fill="#2c3e50" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="50" y="12" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="#2c3e50">
+    Blockchain Transaction Process
+  </text>
+  
+  <!-- Transaction Initiation -->
+  <g transform="translate(20, 25)">
+    <rect class="block" x="-15" y="-8" width="30" height="16" rx="2" />
+    <text class="text" x="0" y="1">Transaction</text>
+    <text class="text" x="0" y="5">Creation</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path class="arrow" d="M35,25 L50,25" />
+  
+  <!-- Validation -->
+  <g transform="translate(60, 25)">
+    <rect class="block" x="-15" y="-8" width="30" height="16" rx="2" />
+    <text class="text" x="0" y="1">Validation &</text>
+    <text class="text" x="0" y="5">Verification</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path class="arrow" d="M75,25 L80,25 L80,40" />
+  
+  <!-- Block Formation -->
+  <g transform="translate(60, 50)">
+    <rect class="block" x="-15" y="-8" width="30" height="16" rx="2" />
+    <text class="text" x="0" y="1">Block</text>
+    <text class="text" x="0" y="5">Formation</text>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <path class="arrow" d="M45,50 L35,50" />
+  
+  <!-- Mining/Consensus -->
+  <g transform="translate(20, 50)">
+    <rect class="block-alt" x="-15" y="-8" width="30" height="16" rx="2" />
+    <text class="text" x="0" y="1">Mining &</text>
+    <text class="text" x="0" y="5">Consensus</text>
+  </g>
+  
+  <!-- Arrow 4 -->
+  <path class="arrow" d="M20,58 L20,70" />
+  
+  <!-- Block Addition -->
+  <g transform="translate(20, 80)">
+    <rect class="block-alt" x="-15" y="-8" width="30" height="16" rx="2" />
+    <text class="text" x="0" y="1">Block</text>
+    <text class="text" x="0" y="5">Addition</text>
+  </g>
+  
+  <!-- Arrow 5 -->
+  <path class="arrow" d="M35,80 L45,80" />
+  
+  <!-- Distribution -->
+  <g transform="translate(60, 80)">
+    <rect class="block" x="-15" y="-8" width="30" height="16" rx="2" />
+    <text class="text" x="0" y="1">Network</text>
+    <text class="text" x="0" y="5">Distribution</text>
+  </g>
+  
+  <!-- Dotted path back to start (cyclic) -->
+  <path class="arrow" d="M75,80 L85,80 L85,25" stroke-dasharray="2,1" />
+</svg>

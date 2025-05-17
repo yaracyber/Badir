@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" width="100%" height="100%">
+  <style>
+    .person {
+      fill: #3498db;
+    }
+    .person-alt {
+      fill: #e74c3c;
+    }
+    .person-outline {
+      fill: none;
+      stroke: #2c3e50;
+      stroke-width: 0.5;
+    }
+    .connection {
+      fill: none;
+      stroke: #2980b9;
+      stroke-width: 0.75;
+    }
+    .connection-dashed {
+      fill: none;
+      stroke: #2980b9;
+      stroke-width: 0.75;
+      stroke-dasharray: 2,1;
+    }
+    .building {
+      fill: #f39c12;
+      stroke: #e67e22;
+      stroke-width: 0.5;
+    }
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 3px;
+      fill: #2c3e50;
+      text-anchor: middle;
+    }
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 5px;
+      fill: #2c3e50;
+      text-anchor: middle;
+      font-weight: bold;
+    }
+    .subtitle {
+      font-family: Arial, sans-serif;
+      font-size: 2.5px;
+      fill: #2c3e50;
+      text-anchor: middle;
+      font-style: italic;
+    }
+  </style>
+  
+  <!-- Title -->
+  <text x="50" y="7" class="title">BLOCKCHAIN COMMUNITY SUPPORT</text>
+  <text x="50" y="12" class="subtitle">Connecting donors directly to recipients through transparent technology</text>
+  
+  <!-- Donor Community -->
+  <g transform="translate(30, 25)">
+    <!-- Donors (People Icons) -->
+    <circle cx="-8" cy="-3" r="3" class="person" />
+    <path d="M-10,-1 C-10,1 -8,2 -8,2 C-8,2 -6,1 -6,-1" class="person-outline" />
+    
+    <circle cx="0" cy="-5" r="3" class="person" />
+    <path d="M-2,-3 C-2,-1 0,0 0,0 C0,0 2,-1 2,-3" class="person-outline" />
+    
+    <circle cx="8" cy="-3" r="3" class="person" />
+    <path d="M6,-1 C6,1 8,2 8,2 C8,2 10,1 10,-1" class="person-outline" />
+    
+    <!-- Group Label -->
+    <text x="0" y="8" class="text">DONOR COMMUNITY</text>
+  </g>
+  
+  <!-- Blockchain -->
+  <g transform="translate(50, 40)">
+    <!-- Blockchain Representation -->
+    <rect x="-15" y="-5" width="30" height="10" rx="2" fill="#2ecc71" />
+    <rect x="-12" y="-3" width="6" height="6" rx="1" fill="#27ae60" />
+    <rect x="-4" y="-3" width="6" height="6" rx="1" fill="#27ae60" />
+    <rect x="4" y="-3" width="6" height="6" rx="1" fill="#27ae60" />
+    
+    <!-- Blockchain Label -->
+    <text x="0" y="10" class="text">BLOCKCHAIN NETWORK</text>
+  </g>
+  
+  <!-- Recipient Community -->
+  <g transform="translate(70, 60)">
+    <!-- Recipients (People Icons) - Different color -->
+    <circle cx="-8" cy="-3" r="3" class="person-alt" />
+    <path d="M-10,-1 C-10,1 -8,2 -8,2 C-8,2 -6,1 -6,-1" class="person-outline" />
+    
+    <circle cx="0" cy="-5" r="3" class="person-alt" />
+    <path d="M-2,-3 C-2,-1 0,0 0,0 C0,0 2,-1 2,-3" class="person-outline" />
+    
+    <circle cx="8" cy="-3" r="3" class="person-alt" />
+    <path d="M6,-1 C6,1 8,2 8,2 C8,2 10,1 10,-1" class="person-outline" />
+    
+    <!-- Group Label -->
+    <text x="0" y="6" class="text">RECIPIENT COMMUNITY</text>
+  </g>
+  
+  <!-- Charity/Institution -->
+  <g transform="translate(25, 60)">
+    <!-- Building Icon -->
+    <path d="M-10,0 L10,0 L10,10 L-10,10 Z" class="building" />
+    <path d="M-10,0 L0,-8 L10,0" class="building" />
+    <rect x="-2" y="3" width="4" height="7" fill="#ffffff" />
+    <rect x="-7" y="5" width="3" height="3" fill="#ffffff" />
+    <rect x="4" y="5" width="3" height="3" fill="#ffffff" />
+    
+    <!-- Label -->
+    <text x="0" y="15" class="text">CHARITY ORGANIZATION</text>
+  </g>
+  
+  <!-- Connections -->
+  <path class="connection" d="M30,30 L45,35" />
+  <path class="connection" d="M55,35 L70,50" />
+  <path class="connection" d="M25,45 L25,50" />
+  <path class="connection" d="M45,45 L25,50" />
+  
+  <!-- Tech Elements Beneath -->
+  <g transform="translate(50, 75)">
+    <rect x="-25" y="-3" width="50" height="6" rx="1" fill="#9b59b6" />
+    <text x="0" y="1" class="text" fill="#ffffff">TRANSPARENT · SECURE · EFFICIENT</text>
+  </g>
+</svg>

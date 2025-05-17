@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" width="100%" height="100%">
+  <style>
+    .st0 {
+      fill: #3498db;
+    }
+    .st1 {
+      fill: #2ecc71;
+    }
+    .st2 {
+      fill: #e74c3c;
+    }
+    .st3 {
+      fill: #f39c12;
+    }
+    .st4 {
+      fill: #9b59b6;
+    }
+    .st5 {
+      fill: none;
+      stroke: #34495e;
+      stroke-width: 0.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .st6 {
+      fill: #34495e;
+      font-family: Arial, sans-serif;
+      font-size: 3px;
+    }
+    .st7 {
+      fill: #34495e;
+      font-family: Arial, sans-serif;
+      font-size: 5px;
+      font-weight: bold;
+    }
+    .st8 {
+      fill: #34495e;
+      font-family: Arial, sans-serif;
+      font-size: 2.5px;
+    }
+    .icon {
+      fill: #ecf0f1;
+    }
+  </style>
+  
+  <!-- Title -->
+  <text x="50" y="8" class="st7" text-anchor="middle">DONATION IMPACT TRACKER</text>
+  
+  <!-- Donor Section -->
+  <g transform="translate(15, 25)">
+    <circle cx="0" cy="0" r="8" class="st0" />
+    <path class="icon" d="M-3,-1 L-3,-3 L3,-3 L3,-1 L1,-1 L1,4 L-1,4 L-1,-1 Z" />
+    <text x="0" y="12" class="st6" text-anchor="middle">DONORS</text>
+    <text x="0" y="16" class="st8" text-anchor="middle">(Ethereum Wallet)</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path class="st5" d="M25,25 L35,25" />
+  <polygon points="35,25 33,24 33,26" class="st0" />
+  
+  <!-- Smart Contract -->
+  <g transform="translate(50, 25)">
+    <rect x="-10" y="-10" width="20" height="20" rx="2" class="st1" />
+    <path class="icon" d="M-5,-4 L5,-4 M-5,0 L5,0 M-5,4 L5,4" stroke="#ecf0f1" stroke-width="1.5" />
+    <text x="0" y="15" class="st6" text-anchor="middle">SMART CONTRACT</text>
+    <text x="0" y="19" class="st8" text-anchor="middle">(Transparent Ledger)</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path class="st5" d="M62,25 L75,25" />
+  <polygon points="75,25 73,24 73,26" class="st1" />
+  
+  <!-- Charity -->
+  <g transform="translate(85, 25)">
+    <circle cx="0" cy="0" r="8" class="st2" />
+    <path class="icon" d="M0,-4 C1,-4 2,-3 2,-1 C2,0 1,1 0,1 C-1,1 -2,0 -2,-1 C-2,-3 -1,-4 0,-4 Z M-3,2 C-3,4 -1,5 0,5 C1,5 3,4 3,2 L3,1 L-3,1 Z" />
+    <text x="0" y="12" class="st6" text-anchor="middle">CHARITY</text>
+    <text x="0" y="16" class="st8" text-anchor="middle">(Recipient)</text>
+  </g>
+  
+  <!-- Progress Tracking -->
+  <rect x="40" y="45" width="20" height="8" rx="2" class="st3" />
+  <text x="50" y="50" class="st6" text-anchor="middle" fill="#fff">TRACKING</text>
+  
+  <!-- Connecting Lines -->
+  <path class="st5" d="M50,35 L50,45" />
+  <path class="st5" d="M15,35 L15,55" />
+  <path class="st5" d="M85,35 L85,55" />
+  <path class="st5" d="M15,55 L85,55" />
+  <polygon points="50,45 48,42 52,42" class="st3" />
+  
+  <!-- Impact Tracking -->
+  <g transform="translate(50, 65)">
+    <rect x="-25" y="-5" width="50" height="10" rx="2" class="st4" />
+    <text x="0" y="0" class="st6" text-anchor="middle" fill="#fff">TRANSPARENT IMPACT REPORTING</text>
+    <path class="st5" d="M-20,-1 L-15,-1 L-12,2 L-5,-3 L0,1 L5,-2 L12,2 L15,0 L20,0" />
+  </g>
+  
+  <!-- Final Connection -->
+  <path class="st5" d="M50,55 L50,60" />
+  <polygon points="50,60 48,57 52,57" class="st4" />
+</svg>

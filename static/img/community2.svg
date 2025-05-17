@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="100%" height="100%">
+  <style>
+    .bg-group {
+      fill: #ecf0f1;
+      stroke: #bdc3c7;
+      stroke-width: 0.5;
+    }
+    .person {
+      fill: #3498db;
+    }
+    .person-alt {
+      fill: #e74c3c;
+    }
+    .eth {
+      fill: #2c3e50;
+    }
+    .arrow {
+      fill: none;
+      stroke: #7f8c8d;
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 3px;
+      fill: #2c3e50;
+      text-anchor: middle;
+    }
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 6px;
+      fill: #2c3e50;
+      text-anchor: middle;
+      font-weight: bold;
+    }
+    .heart {
+      fill: #e74c3c;
+    }
+  </style>
+  
+  <!-- Title -->
+  <text x="60" y="10" class="title">COMMUNITY SUPPORT THROUGH BLOCKCHAIN</text>
+  
+  <!-- Donor Group -->
+  <g transform="translate(30, 30)">
+    <rect x="-20" y="-15" width="40" height="30" rx="5" class="bg-group" />
+    
+    <!-- Donor Figures -->
+    <circle cx="-10" cy="-5" r="5" class="person" />
+    <circle cx="0" cy="0" r="5" class="person" />
+    <circle cx="10" cy="-5" r="5" class="person" />
+    
+    <!-- ETH Symbols -->
+    <path class="eth" d="M-10,-7 L-10,-3 M-12,-5 L-8,-5" stroke-width="0.5" />
+    <path class="eth" d="M0,-2 L0,2 M-2,0 L2,0" stroke-width="0.5" />
+    <path class="eth" d="M10,-7 L10,-3 M8,-5 L12,-5" stroke-width="0.5" />
+    
+    <text x="0" y="20" class="text">DONOR COMMUNITY</text>
+  </g>
+  
+  <!-- Central Blockchain Node -->
+  <g transform="translate(60, 40)">
+    <circle cx="0" cy="0" r="10" fill="#2ecc71" />
+    
+    <!-- Blockchain Icon -->
+    <rect x="-5" y="-3" width="10" height="2" fill="#ffffff" rx="0.5" />
+    <rect x="-5" y="0" width="10" height="2" fill="#ffffff" rx="0.5" />
+    <rect x="-5" y="3" width="10" height="2" fill="#ffffff" rx="0.5" />
+    
+    <text x="0" y="15" class="text">BLOCKCHAIN</text>
+    <text x="0" y="19" class="text" style="font-size:2px;">Transparent Ledger</text>
+  </g>
+  
+  <!-- Recipient Group -->
+  <g transform="translate(90, 30)">
+    <rect x="-20" y="-15" width="40" height="30" rx="5" class="bg-group" />
+    
+    <!-- Recipient Figures -->
+    <circle cx="-10" cy="-5" r="5" class="person-alt" />
+    <circle cx="0" cy="0" r="5" class="person-alt" />
+    <circle cx="10" cy="-5" r="5" class="person-alt" />
+    
+    <!-- Heart Symbols -->
+    <path class="heart" d="M-12,-7 C-12,-8 -11,-9 -10,-9 C-9,-9 -8,-8 -8,-7 C-8,-8 -7,-9 -6,-9 C-5,-9 -4,-8 -4,-7 C-4,-6 -5,-5 -6,-4 L-10,-1 L-14,-4 C-15,-5 -16,-6 -16,-7 C-16,-8 -15,-9 -14,-9 C-13,-9 -12,-8 -12,-7 Z" transform="scale(0.3)" />
+    
+    <path class="heart" d="M-2,-2 C-2,-3 -1,-4 0,-4 C1,-4 2,-3 2,-2 C2,-3 3,-4 4,-4 C5,-4 6,-3 6,-2 C6,-1 5,0 4,1 L0,4 L-4,1 C-5,0 -6,-1 -6,-2 C-6,-3 -5,-4 -4,-4 C-3,-4 -2,-3 -2,-2 Z" transform="scale(0.3)" />
+    
+    <path class="heart" d="M8,-7 C8,-8 9,-9 10,-9 C11,-9 12,-8 12,-7 C12,-8 13,-9 14,-9 C15,-9 16,-8 16,-7 C16,-6 15,-5 14,-4 L10,-1 L6,-4 C5,-5 4,-6 4,-7 C4,-8 5,-9 6,-9 C7,-9 8,-8 8,-7 Z" transform="scale(0.3)" />
+    
+    <text x="0" y="20" class="text">RECIPIENT COMMUNITY</text>
+  </g>
+  
+  <!-- Connection Arrows -->
+  <path class="arrow" d="M40,30 L50,37" />
+  <path class="arrow" d="M70,37 L80,30" />
+  
+  <!-- Progress Tracking Bar -->
+  <g transform="translate(60, 65)">
+    <rect x="-30" y="-5" width="60" height="10" rx="2" fill="#9b59b6" />
+    
+    <!-- Progress Bar -->
+    <rect x="-28" y="-3" width="40" height="6" rx="1" fill="#ecf0f1" />
+    <rect x="-28" y="-3" width="24" height="6" rx="1" fill="#f39c12" />
+    
+    <text x="0" y="1" class="text" fill="#ffffff">FUNDRAISING PROGRESS</text>
+    <text x="-8" y="-3" class="text" style="font-size:2px;" fill="#2c3e50">4 ETH</text>
+    <text x="20" y="-3" class="text" style="font-size:2px;" fill="#2c3e50">10 ETH</text>
+  </g>
+</svg>

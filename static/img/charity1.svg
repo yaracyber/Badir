@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="100%" height="100%">
+  <style>
+    .heart {
+      fill: #e74c3c;
+    }
+    .hand {
+      fill: #f39c12;
+    }
+    .circle {
+      fill: #3498db;
+    }
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 5px;
+      fill: #2c3e50;
+      text-anchor: middle;
+    }
+    .small-text {
+      font-family: Arial, sans-serif;
+      font-size: 3px;
+      fill: #2c3e50;
+      text-anchor: middle;
+    }
+    .line {
+      stroke: #7f8c8d;
+      stroke-width: 0.5;
+      fill: none;
+    }
+    .arrow {
+      fill: #7f8c8d;
+    }
+  </style>
+  
+  <!-- Main Title -->
+  <text x="60" y="10" class="text" font-weight="bold">BLOCKCHAIN CHARITY DONATIONS</text>
+  
+  <!-- Donor -->
+  <g transform="translate(20, 30)">
+    <circle cx="0" cy="0" r="10" class="circle" opacity="0.8" />
+    <text x="0" y="0" class="text" dominant-baseline="middle">Donor</text>
+    <text x="0" y="15" class="small-text">Contributes ETH</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path class="line" d="M30,30 L50,30" />
+  <polygon class="arrow" points="50,30 46,28 46,32" />
+  
+  <!-- Blockchain -->
+  <g transform="translate(60, 30)">
+    <rect x="-10" y="-10" width="20" height="20" rx="2" fill="#2ecc71" />
+    <rect x="-8" y="-8" width="16" height="4" fill="#27ae60" />
+    <rect x="-8" y="-2" width="16" height="4" fill="#27ae60" />
+    <rect x="-8" y="4" width="16" height="4" fill="#27ae60" />
+    <text x="0" y="15" class="small-text">Smart Contract</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path class="line" d="M70,30 L90,30" />
+  <polygon class="arrow" points="90,30 86,28 86,32" />
+  
+  <!-- Recipient -->
+  <g transform="translate(100, 30)">
+    <path class="hand" d="M-5,-5 C-5,-8 -2,-10 0,-10 C2,-10 5,-8 5,-5 L5,0 C5,3 2,5 0,5 C-2,5 -5,3 -5,0 Z" />
+    <path class="hand" d="M-3,2 L-7,5 C-8,6 -8,8 -7,9 C-6,10 -4,10 -3,9 L0,6" />
+    <text x="0" y="15" class="small-text">Charity/Recipient</text>
+  </g>
+  
+  <!-- Heart / Impact icon -->
+  <g transform="translate(60, 60)">
+    <path class="heart" d="M0,3 L-1.5,1.5 C-3,-0.5 -6,-0.5 -7.5,1 C-9,2.5 -9,5.5 -7.5,7 L0,14.5 L7.5,7 C9,5.5 9,2.5 7.5,1 C6,-0.5 3,-0.5 1.5,1.5 Z" transform="scale(0.8)" />
+    <text x="0" y="15" class="small-text">Community Impact</text>
+  </g>
+  
+  <!-- Connecting lines to impact -->
+  <path class="line" d="M20,40 L50,60" />
+  <path class="line" d="M100,40 L70,60" />
+  
+  <!-- Technical elements subtitle -->
+  <text x="60" y="75" class="small-text" font-style="italic">
+    Transparent, Secure, and Efficient Giving
+  </text>
+</svg>

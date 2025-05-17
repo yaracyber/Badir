@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="100%" height="100%">
+  <style>
+    .block {
+      fill: #3498db;
+      stroke: #2980b9;
+      stroke-width: 1;
+    }
+    .connector {
+      fill: none;
+      stroke: #2c3e50;
+      stroke-width: 1;
+    }
+    .hash {
+      fill: #e74c3c;
+      stroke: #c0392b;
+      stroke-width: 0.5;
+    }
+    .data {
+      fill: #ecf0f1;
+      stroke: #bdc3c7;
+      stroke-width: 0.5;
+    }
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 2.5px;
+      fill: #2c3e50;
+    }
+    .hash-text {
+      font-family: monospace;
+      font-size: 2px;
+      fill: #2c3e50;
+    }
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 5px;
+      fill: #2c3e50;
+      font-weight: bold;
+    }
+  </style>
+
+  <!-- Title -->
+  <text x="60" y="8" class="title" text-anchor="middle">BLOCKCHAIN STRUCTURE</text>
+  
+  <!-- Block 1 -->
+  <g transform="translate(15, 25)">
+    <!-- Block Container -->
+    <rect class="block" x="0" y="0" width="25" height="30" rx="2" />
+    
+    <!-- Block Number -->
+    <text x="12.5" y="5" class="text" text-anchor="middle">BLOCK #1</text>
+    
+    <!-- Previous Hash (Genesis block has no previous) -->
+    <rect class="hash" x="2" y="7" width="21" height="4" rx="1" />
+    <text x="12.5" y="10" class="hash-text" text-anchor="middle">0000000000</text>
+    
+    <!-- Data -->
+    <rect class="data" x="2" y="13" width="21" height="12" rx="1" />
+    <text x="12.5" y="17" class="text" text-anchor="middle">TRANSACTION DATA</text>
+    <text x="12.5" y="20" class="text" text-anchor="middle">...</text>
+    
+    <!-- Current Hash -->
+    <rect class="hash" x="2" y="27" width="21" height="4" rx="1" />
+    <text x="12.5" y="30" class="hash-text" text-anchor="middle">AB23CD45EF</text>
+  </g>
+  
+  <!-- Connector 1-2 -->
+  <path class="connector" d="M40,40 L50,40" />
+  
+  <!-- Block 2 -->
+  <g transform="translate(50, 25)">
+    <!-- Block Container -->
+    <rect class="block" x="0" y="0" width="25" height="30" rx="2" />
+    
+    <!-- Block Number -->
+    <text x="12.5" y="5" class="text" text-anchor="middle">BLOCK #2</text>
+    
+    <!-- Previous Hash -->
+    <rect class="hash" x="2" y="7" width="21" height="4" rx="1" />
+    <text x="12.5" y="10" class="hash-text" text-anchor="middle">AB23CD45EF</text>
+    
+    <!-- Data -->
+    <rect class="data" x="2" y="13" width="21" height="12" rx="1" />
+    <text x="12.5" y="17" class="text" text-anchor="middle">TRANSACTION DATA</text>
+    <text x="12.5" y="20" class="text" text-anchor="middle">...</text>
+    
+    <!-- Current Hash -->
+    <rect class="hash" x="2" y="27" width="21" height="4" rx="1" />
+    <text x="12.5" y="30" class="hash-text" text-anchor="middle">67FG89HI12</text>
+  </g>
+  
+  <!-- Connector 2-3 -->
+  <path class="connector" d="M75,40 L85,40" />
+  
+  <!-- Block 3 -->
+  <g transform="translate(85, 25)">
+    <!-- Block Container -->
+    <rect class="block" x="0" y="0" width="25" height="30" rx="2" />
+    
+    <!-- Block Number -->
+    <text x="12.5" y="5" class="text" text-anchor="middle">BLOCK #3</text>
+    
+    <!-- Previous Hash -->
+    <rect class="hash" x="2" y="7" width="21" height="4" rx="1" />
+    <text x="12.5" y="10" class="hash-text" text-anchor="middle">67FG89HI12</text>
+    
+    <!-- Data -->
+    <rect class="data" x="2" y="13" width="21" height="12" rx="1" />
+    <text x="12.5" y="17" class="text" text-anchor="middle">TRANSACTION DATA</text>
+    <text x="12.5" y="20" class="text" text-anchor="middle">...</text>
+    
+    <!-- Current Hash -->
+    <rect class="hash" x="2" y="27" width="21" height="4" rx="1" />
+    <text x="12.5" y="30" class="hash-text" text-anchor="middle">JK34LM56NO</text>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(20, 65)">
+    <rect class="hash" x="0" y="0" width="8" height="3" rx="1" />
+    <text x="10" y="2.5" class="text">Hash Values</text>
+    
+    <rect class="data" x="40" y="0" width="8" height="3" rx="1" />
+    <text x="50" y="2.5" class="text">Transaction Data</text>
+    
+    <path class="connector" d="M80,1.5 L88,1.5" />
+    <text x="92" y="2.5" class="text">Blockchain Links</text>
+  </g>
+</svg>

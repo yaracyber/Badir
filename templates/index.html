@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block title %}Badir - Blockchain Charity Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section py-5 mb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Empowering Communities Through Blockchain</h1>
+                <p class="lead mb-4">Badir uses Ethereum technology to create transparent, efficient, and secure donation channels to communities in need.</p>
+                <div class="d-grid d-md-block">
+                    <a href="{{ url_for('donate') }}" class="btn btn-primary btn-lg">Go Donate</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <img src="https://pixabay.com/get/g52138da7d11b5741040dc98eb9d44523e66652a794d4b39fa3cbd05e45dcb77f46fbbee0bc4fda0ed831ce25b07895a978f035ccab0cd31cdafac7bf223f90ac_1280.jpg" 
+                     alt="Blockchain Technology" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Statement -->
+<section class="mission-section py-5 bg-light rounded">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="mb-4">Our Mission</h2>
+                <p class="lead mb-4">
+                    At Badir, we believe that blockchain technology can revolutionize charitable giving by 
+                    ensuring transparency, reducing overhead, and creating direct connections between donors 
+                    and beneficiaries. Every donation is tracked on the Ethereum blockchain, providing 
+                    irrefutable proof of your contribution's journey.
+                </p>
+                <a href="{{ url_for('donate') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-heart me-2"></i> Support Our Cause
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Cards -->
+<section class="impact-section py-5 mt-5">
+    <div class="container">
+        <h2 class="text-center mb-5">How Your Donations Make an Impact</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="https://pixabay.com/get/gacddebbbb3c3ce55398c7c67d77507d52ea57416d727cdfc74b6740654aa65a1f58528cfc7f5b54fdc3e540d03c3a8aed71e4b8bb5c483a2ddc76eb3de57bfc0_1280.jpg" 
+                         class="card-img-top" alt="Charity Donation">
+                    <div class="card-body">
+                        <h5 class="card-title">Transparent Giving</h5>
+                        <p class="card-text">Every donation is recorded on the Ethereum blockchain, creating a permanent, 
+                            immutable record of your contribution.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="https://pixabay.com/get/gae2bcf0b2f343315f428cc979c59c2febf7f93080a302d69ed83ef4c020eefde4ba68e616ed993f315239d05376d9cb363711255b3bd8e6bf1d82fd8ae6b19ae_1280.png" 
+                         class="card-img-top" alt="Community Support">
+                    <div class="card-body">
+                        <h5 class="card-title">Community Support</h5>
+                        <p class="card-text">Your donations directly support communities in need, with minimal overhead 
+                            and maximum impact on the ground.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="https://pixabay.com/get/geb59d5c875972a0b66e98c6c23fd6a3b309f1c0bf0cb85337ca1d346750b277215cf7b2ec9c9ec5582947ff4b3d807987eb80700ff319c0fb1386ea4fbe3285e_1280.jpg" 
+                         class="card-img-top" alt="Blockchain Innovation">
+                    <div class="card-body">
+                        <h5 class="card-title">Innovative Solutions</h5>
+                        <p class="card-text">By leveraging blockchain technology, we're pioneering new ways to make charitable 
+                            giving more efficient and trustworthy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section py-5 mt-4 bg-primary text-white rounded">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Make a Difference?</h2>
+        <p class="lead mb-4">Your contribution, no matter how small, helps us reach our goal and support communities in need.</p>
+        <a href="{{ url_for('donate') }}" class="btn btn-light btn-lg">
+            Donate Now <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</section>
+{% endblock %}

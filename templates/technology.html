@@ -1,0 +1,279 @@
+{% extends "layout.html" %}
+
+{% block title %}Technology - Badir{% endblock %}
+
+{% block content %}
+<!-- Technology Hero Section -->
+<section class="technology-hero mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto text-center">
+                <h1 class="display-4 mb-3">Our Technology</h1>
+                <p class="lead">Discover how we leverage blockchain technology to create transparent and efficient donation channels.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="tech-stack-section mb-5">
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Our Technology Stack</h2>
+                
+                <div class="row justify-content-center mb-4">
+                    <div class="col-lg-10">
+                        <p class="lead text-center">
+                            Built with cutting-edge blockchain technology, our platform combines the best of web development
+                            and decentralized finance to create a seamless donation experience.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row row-cols-2 row-cols-md-4 g-4 text-center">
+                    <!-- HTML -->
+                    <div class="col">
+                        <div class="tech-icon p-3">
+                            <i class="fab fa-html5 fa-3x text-danger mb-3"></i>
+                            <h5>HTML5</h5>
+                            <p class="small text-muted">Modern markup</p>
+                        </div>
+                    </div>
+                    
+                    <!-- CSS -->
+                    <div class="col">
+                        <div class="tech-icon p-3">
+                            <i class="fab fa-css3-alt fa-3x text-primary mb-3"></i>
+                            <h5>CSS3</h5>
+                            <p class="small text-muted">Responsive styling</p>
+                        </div>
+                    </div>
+                    
+                    <!-- JavaScript -->
+                    <div class="col">
+                        <div class="tech-icon p-3">
+                            <i class="fab fa-js fa-3x text-warning mb-3"></i>
+                            <h5>JavaScript</h5>
+                            <p class="small text-muted">Dynamic functionality</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Ethereum -->
+                    <div class="col">
+                        <div class="tech-icon p-3">
+                            <i class="fab fa-ethereum fa-3x text-info mb-3"></i>
+                            <h5>Ethereum</h5>
+                            <p class="small text-muted">Blockchain platform</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Bootstrap -->
+                    <div class="col">
+                        <div class="tech-icon p-3">
+                            <i class="fab fa-bootstrap fa-3x text-purple mb-3"></i>
+                            <h5>Bootstrap</h5>
+                            <p class="small text-muted">Responsive framework</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Solidity -->
+                    <div class="col">
+                        <div class="tech-icon p-3">
+                            <i class="fas fa-file-code fa-3x text-secondary mb-3"></i>
+                            <h5>Solidity</h5>
+                            <p class="small text-muted">Smart contract language</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Ethers.js -->
+                    <div class="col">
+                        <div class="tech-icon p-3">
+                            <i class="fas fa-plug fa-3x text-success mb-3"></i>
+                            <h5>Ethers.js</h5>
+                            <p class="small text-muted">Blockchain interaction</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Flask -->
+                    <div class="col">
+                        <div class="tech-icon p-3">
+                            <i class="fab fa-python fa-3x text-info mb-3"></i>
+                            <h5>Flask</h5>
+                            <p class="small text-muted">Lightweight backend</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How Blockchain Works Section -->
+<section class="blockchain-explainer mb-5">
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="text-center mb-4">How Does Blockchain Work?</h2>
+                
+                <!-- Video Embed -->
+                <div class="row mb-5">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/SSo_EIwHSd4" 
+                                    title="Blockchain Explanation" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step-by-Step Guide -->
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h3 class="h5 mb-0">Blockchain Fundamentals: Step-by-Step</h3>
+                            </div>
+                            <div class="card-body">
+                                <ol class="blockchain-steps">
+                                    <li class="mb-4">
+                                        <h4 class="h5">Many participants maintain a shared ledger</h4>
+                                        <p>Blockchain is a distributed ledger technology where multiple computers (nodes) 
+                                           maintain identical copies of the transaction history. This eliminates the need 
+                                           for a central authority to verify transactions.</p>
+                                    </li>
+                                    
+                                    <li class="mb-4">
+                                        <h4 class="h5">Transactions are grouped into blocks</h4>
+                                        <p>Multiple transactions are bundled together into a "block." Each block has a unique 
+                                           cryptographic signature (hash) and contains a reference to the previous block, 
+                                           creating a chain of blocks — hence the name "blockchain."</p>
+                                    </li>
+                                    
+                                    <li class="mb-4">
+                                        <h4 class="h5">Blocks are cryptographically linked</h4>
+                                        <p>Each block contains the cryptographic hash of the previous block, creating an 
+                                           unbroken chain. This makes the blockchain immutable — if someone tries to alter 
+                                           a past transaction, all subsequent blocks would need to be changed, which is 
+                                           computationally impractical.</p>
+                                    </li>
+                                    
+                                    <li>
+                                        <h4 class="h5">Consensus ensures trust and security</h4>
+                                        <p>Blockchain networks use consensus mechanisms (like Proof of Work or Proof of Stake) 
+                                           to agree on the state of the ledger. This replaces the need for trust in a central 
+                                           authority with trust in the mathematical principles that secure the network.</p>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blockchain Benefits Section -->
+<section class="blockchain-benefits mb-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Benefits of Blockchain for Charity</h2>
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Transparency Card -->
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-eye fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="card-title h5 text-center">Complete Transparency</h3>
+                        <p class="card-text">
+                            All donations are recorded on the public blockchain, allowing donors to track exactly where 
+                            their funds go. This creates unprecedented accountability in the charity sector.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reduced Overhead Card -->
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-dollar-sign fa-3x text-success"></i>
+                        </div>
+                        <h3 class="card-title h5 text-center">Reduced Overhead</h3>
+                        <p class="card-text">
+                            Smart contracts automate many processes that traditionally require human intervention, 
+                            reducing administrative costs and ensuring more of your donation reaches those in need.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Global Access Card -->
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-globe-americas fa-3x text-info"></i>
+                        </div>
+                        <h3 class="card-title h5 text-center">Global Accessibility</h3>
+                        <p class="card-text">
+                            Blockchain technology enables donations from anywhere in the world, helping charities 
+                            reach a wider donor base and provide aid to regions that may be underserved by traditional 
+                            financial systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Smart Contracts Explained -->
+<section class="smart-contracts mb-5">
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2 class="mb-4">Smart Contracts Explained</h2>
+                        <p class="lead">At the heart of our platform is a smart contract — self-executing code that lives on the Ethereum blockchain.</p>
+                        
+                        <p>Smart contracts are:</p>
+                        <ul>
+                            <li><strong>Autonomous</strong> — They execute automatically when conditions are met</li>
+                            <li><strong>Transparent</strong> — Anyone can verify their code and execution</li>
+                            <li><strong>Immutable</strong> — Once deployed, they cannot be changed</li>
+                            <li><strong>Secure</strong> — Cryptographically protected from tampering</li>
+                        </ul>
+                        
+                        <p>Our Badir donation contract handles the entire donation process, from receiving funds to tracking progress toward our goal, all without intermediaries.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://pixabay.com/get/ge280e114a025dbd1b897bd497d44cbc04edcac5bfa73bd207002407c2fd65873d4a0ea7042e68165b8b784200629f3f1b6b5d5d891aab0ee53154bdf9a129d00_1280.jpg" 
+                             alt="Blockchain Technology" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section py-5 bg-primary text-white rounded">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Join the Future of Charitable Giving?</h2>
+        <p class="lead mb-4">Experience the transparency and efficiency of blockchain-based donations today.</p>
+        <a href="{{ url_for('donate') }}" class="btn btn-light btn-lg">
+            Make a Donation <i class="fas fa-heart ms-2"></i>
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/technology.js') }}"></script>
+{% endblock %}

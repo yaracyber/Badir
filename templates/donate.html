@@ -1,0 +1,269 @@
+{% extends "layout.html" %}
+
+{% block title %}Donate - Badir{% endblock %}
+
+{% block extra_css %}
+<style>
+    .donation-card {
+        transition: transform 0.3s;
+    }
+    .donation-card:hover {
+        transform: translateY(-5px);
+    }
+    #donationProgress {
+        height: 30px;
+    }
+    .contract-info {
+        min-height: 120px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="donation-hero mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto text-center">
+                <h1 class="display-4 mb-3">Support Our Mission</h1>
+                <p class="lead">Your Ethereum donations directly support communities in need with full blockchain transparency.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fundraising Goal -->
+<section class="fundraising-goal mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Help us reach 10 ETH to support communities in need!</h2>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Progress:</span>
+                                <span id="progressText">0 ETH of 10 ETH</span>
+                            </div>
+                            <div class="progress" id="donationProgress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" style="width: 0%;" 
+                                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <p class="mb-0">Connect your wallet to see real-time fundraising progress from our smart contract.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Donation Form -->
+<section class="donation-form mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Make a Donation</h3>
+                        
+                        <div id="walletStatus" class="alert alert-warning mb-4">
+                            <i class="fas fa-exclamation-triangle me-2"></i> Please connect your Ethereum wallet to continue
+                        </div>
+                        
+                        <button id="connectWallet" class="btn btn-primary mb-4">
+                            <i class="fas fa-wallet me-2"></i> Connect Wallet
+                        </button>
+                        
+                        <form id="donationForm" style="display: none;">
+                            <div class="mb-3">
+                                <label for="donationAmount" class="form-label">Amount in ETH (min 0.2, max 20)</label>
+                                <input type="number" class="form-control" id="donationAmount" 
+                                       min="0.2" max="20" step="0.01" required
+                                       placeholder="Enter donation amount">
+                                <div class="form-text">The minimum donation is 0.2 ETH and the maximum is 20 ETH.</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="donorMessage" class="form-label">Message (Optional)</label>
+                                <textarea class="form-control" id="donorMessage" rows="3" 
+                                          placeholder="Leave a message with your donation"></textarea>
+                            </div>
+                            
+                            <button type="submit" id="submitDonation" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-heart me-2"></i> Submit Donation
+                            </button>
+                        </form>
+                        
+                        <div id="transactionStatus" class="mt-4" style="display: none;">
+                            <div class="alert alert-info">
+                                <div class="d-flex align-items-center">
+                                    <div class="spinner-border spinner-border-sm me-2" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <span id="transactionMessage">Processing your donation...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contract Info Cards -->
+<section class="contract-info-section mb-5">
+    <div class="container">
+        <h3 class="text-center mb-4">Smart Contract Information</h3>
+        <div class="row">
+            <!-- Highest Donation Card -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow h-100 donation-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Highest Donation</h5>
+                        <p class="card-text text-muted small">Owner Only</p>
+                        <div class="contract-info mb-3">
+                            <div id="highestDonationInfo">
+                                <p>Connect wallet to view information</p>
+                            </div>
+                        </div>
+                        <button id="getHighestDonation" class="btn btn-outline-primary btn-sm w-100">
+                            Get Highest Donation
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Total Donations Card -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow h-100 donation-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Donations</h5>
+                        <p class="card-text text-muted small">Public Information</p>
+                        <div class="contract-info mb-3">
+                            <div id="totalDonationsInfo">
+                                <p>Connect wallet to view information</p>
+                            </div>
+                        </div>
+                        <button id="getTotalDonations" class="btn btn-outline-primary btn-sm w-100">
+                            Get Total Donations
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charity Address Card -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow h-100 donation-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Charity Address</h5>
+                        <p class="card-text text-muted small">Public Information</p>
+                        <div class="contract-info mb-3">
+                            <div id="charityAddressInfo">
+                                <p>Connect wallet to view information</p>
+                            </div>
+                        </div>
+                        <button id="getCharityAddress" class="btn btn-outline-primary btn-sm w-100">
+                            Get Charity Address
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fundraising Goal Card -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow h-100 donation-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Fundraising Goal</h5>
+                        <p class="card-text text-muted small">Public Information</p>
+                        <div class="contract-info mb-3">
+                            <div id="fundraisingGoalInfo">
+                                <p>Our current goal is 10 ETH</p>
+                            </div>
+                        </div>
+                        <button disabled class="btn btn-outline-secondary btn-sm w-100">
+                            Read Only
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Donors -->
+<section class="recent-donors mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Why Donate with Blockchain?</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-lock fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Transparency</h5>
+                                        <p>All transactions are recorded on the blockchain and can't be altered, ensuring your donation reaches its destination.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-hand-holding-usd fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Lower Fees</h5>
+                                        <p>By cutting out traditional payment processors, more of your donation goes directly to the cause.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-globe fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Global Access</h5>
+                                        <p>Anyone with internet access and a digital wallet can donate, regardless of location or banking status.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Security</h5>
+                                        <p>Blockchain's cryptographic security ensures your donation and personal information remain secure.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/contract.js') }}"></script>
+<script src="{{ url_for('static', filename='js/donation.js') }}"></script>
+{% endblock %}
