@@ -4,28 +4,322 @@
 
 {% block extra_css %}
 <style>
+    .donate-hero {
+        background-color: var(--darkest-color);
+        padding: 150px 0 80px;
+        position: relative;
+        text-align: center;
+        overflow: hidden;
+        background-image: 
+            radial-gradient(circle at 20% 30%, rgba(30, 57, 87, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 70% 70%, rgba(199, 169, 94, 0.2) 0%, transparent 50%);
+    }
+    
+    .donate-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("/img/pattern-dots.svg");
+        opacity: 0.05;
+        z-index: 0;
+    }
+    
+    .donate-hero .container {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .donate-hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(90deg, #ECF0F5 0%, #C7A95E 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .donate-hero p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    
+    .donate-section {
+        padding: 80px 0;
+        background-color: rgba(22, 35, 50, 0.6);
+        background-image: 
+            radial-gradient(circle at 85% 85%, rgba(30, 57, 87, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 15% 15%, rgba(199, 169, 94, 0.1) 0%, transparent 50%);
+    }
+    
+    .section-title {
+        position: relative;
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+        display: inline-block;
+        color: white;
+    }
+    
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(to right, var(--color-gold), var(--color-bright-gold));
+    }
+    
     .donation-card {
-        transition: transform 0.3s;
+        background-color: rgba(12, 22, 34, 0.7);
+        border: 1px solid rgba(199, 169, 94, 0.15);
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        height: 100%;
     }
+    
     .donation-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(199, 169, 94, 0.3);
+    }
+    
+    .campaign-progress {
+        margin: 30px 0;
+    }
+    
+    .progress-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        color: white;
+    }
+    
+    .progress-bar-container {
+        height: 12px;
+        background-color: rgba(12, 22, 34, 0.5);
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    
+    .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(to right, var(--color-gold), var(--color-bright-gold));
+        border-radius: 6px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .progress-bar-fill::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent
+        );
+        background-size: 15px 15px;
+        animation: progressAnimation 2s linear infinite;
+    }
+    
+    @keyframes progressAnimation {
+        0% { background-position: 0 0; }
+        100% { background-position: 15px 0; }
+    }
+    
+    .donate-btn {
+        background: linear-gradient(135deg, var(--color-gold), var(--color-bright-gold));
+        color: var(--darkest-color) !important;
+        font-weight: 600;
+        padding: 15px 30px;
+        border-radius: 8px;
+        border: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        box-shadow: 0 10px 20px rgba(199, 169, 94, 0.3);
+    }
+    
+    .donate-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: all 0.5s ease;
+        z-index: -1;
+    }
+    
+    .donate-btn:hover::before {
+        left: 100%;
+    }
+    
+    .donate-btn:hover {
         transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(199, 169, 94, 0.4);
     }
-    #donationProgress {
-        height: 30px;
+    
+    .wallet-info {
+        background-color: rgba(8, 14, 22, 0.7);
+        border: 1px solid rgba(199, 169, 94, 0.2);
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
     }
+    
+    .wallet-address {
+        font-family: 'Courier New', monospace;
+        background-color: rgba(12, 22, 34, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        word-break: break-all;
+        color: var(--color-gold);
+        border: 1px dashed rgba(199, 169, 94, 0.3);
+    }
+    
     .contract-info {
         min-height: 120px;
+        background-color: rgba(8, 14, 22, 0.6);
+        border: 1px solid rgba(199, 169, 94, 0.1);
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 30px;
+    }
+    
+    .donation-form-container {
+        background-color: rgba(12, 22, 34, 0.7);
+        border: 1px solid rgba(199, 169, 94, 0.15);
+        border-radius: 16px;
+        padding: 30px;
+        margin-top: 30px;
+    }
+    
+    .form-label {
+        color: white;
+        font-weight: 500;
+    }
+    
+    .form-control {
+        background-color: rgba(8, 14, 22, 0.7);
+        border: 1px solid rgba(199, 169, 94, 0.2);
+        color: white;
+        border-radius: 8px;
+        padding: 12px 15px;
+    }
+    
+    .form-control:focus {
+        background-color: rgba(8, 14, 22, 0.9);
+        border-color: var(--color-gold);
+        box-shadow: 0 0 0 0.25rem rgba(199, 169, 94, 0.25);
+        color: white;
+    }
+    
+    #donationProgress {
+        height: 15px;
+        background-color: rgba(8, 14, 22, 0.7);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    #donationProgress .progress-bar {
+        background: linear-gradient(to right, var(--color-gold), var(--color-bright-gold));
+        position: relative;
+    }
+    
+    #donationProgress .progress-bar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent
+        );
+        background-size: 15px 15px;
+        animation: progressAnimation 2s linear infinite;
+    }
+    
+    .campaign-list {
+        margin-top: 40px;
+    }
+    
+    .campaign-item {
+        padding: 20px;
+        background-color: rgba(12, 22, 34, 0.7);
+        border: 1px solid rgba(199, 169, 94, 0.15);
+        border-radius: 12px;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .campaign-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .campaign-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .campaign-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--color-deep-navy), var(--color-navy));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-gold);
+        font-size: 1.3rem;
+        flex-shrink: 0;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<section class="donation-hero mb-5">
+<section class="donate-hero">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 mx-auto text-center">
-                <h1 class="display-4 mb-3">Support Our Mission</h1>
-                <p class="lead">Your Ethereum donations directly support communities in need with full blockchain transparency.</p>
+            <div class="col-md-10 mx-auto text-center">
+                <h1>Support Our Blockchain Initiative</h1>
+                <p>Your Ethereum donations directly fund humanitarian efforts with complete transparency, security, and real-time tracking of every contribution.</p>
+                <div class="mt-5">
+                    <button id="connectWallet" class="donate-btn">
+                        <i class="fas fa-wallet me-2"></i> Connect Wallet
+                    </button>
+                </div>
             </div>
         </div>
     </div>
