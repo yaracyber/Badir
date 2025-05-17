@@ -81,13 +81,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid px-4 px-lg-5">
             <a class="navbar-brand" href="{{ url_for('home') }}">
-                <span class="logo-text">B<span class="logo-small">ADIR</span></span>
+                <span class="logo-text">بّـاُدرّ</span>
             </a>
-            <div class="ms-auto d-none d-lg-block">
-                <a href="{{ url_for('donate') }}" class="btn btn-primary me-3" style="background-color: #C7A95E; border-color: #C7A95E; color: #080E16; font-weight: bold;">
-                    <i class="fas fa-wallet me-2"></i> Connect Wallet
-                </a>
-            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -106,11 +101,7 @@
                         <a class="nav-link {% if request.path == '/technology' %}active{% endif %}" 
                            href="{{ url_for('technology') }}">Technology</a>
                     </li>
-                    <li class="nav-item d-block d-lg-none mt-3">
-                        <a href="{{ url_for('donate') }}" class="btn btn-primary w-100" style="background-color: #C7A95E; border-color: #C7A95E; color: #080E16; font-weight: bold;">
-                            <i class="fas fa-wallet me-2"></i> Connect Wallet
-                        </a>
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -127,7 +118,7 @@
             <div class="row mb-4">
                 <div class="col-12 text-center mb-4">
                     <div class="footer-logo">
-                        <span class="logo-text">B<span class="logo-small">ADIR</span></span>
+                        <span class="logo-text">بّـاُدرّ</span>
                     </div>
                     <div class="footer-divider">
                         <span class="footer-divider-line"></span>
