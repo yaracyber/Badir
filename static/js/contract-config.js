@@ -170,19 +170,34 @@ const donationContractABI = [
 const contractConfig = {
     // For local Ganache development (default)
     development: {
-        contractAddress: "0x0000000000000000000000000000000000000000", // Replace with your deployed contract address
+        contractAddress: "", // You'll need to deploy your contract on Ganache and update this address
         networkId: 1337,                                               // Default Ganache network ID
         networkName: "Ganache Local",
         rpcUrl: "http://127.0.0.1:7545"                                // Default Ganache RPC URL
     },
     // For Sepolia testnet
     sepolia: {
-        contractAddress: "0x0000000000000000000000000000000000000000", // Replace when you deploy to Sepolia
+        contractAddress: "", // You'll need to deploy your contract on Sepolia and update this address
         networkId: 11155111,
         networkName: "Sepolia",
         rpcUrl: "https://rpc.sepolia.org"
     }
 };
+
+// Instructions for deploying the contract on Ganache:
+/*
+1. Open Ganache and make sure it's running
+2. Connect MetaMask to Ganache (Network ID: 1337, RPC URL: http://127.0.0.1:7545)
+3. Using Remix IDE (https://remix.ethereum.org):
+   - Create a new file named Donation.sol
+   - Copy your contract code into the file
+   - Compile the contract
+   - Go to the "Deploy & Run Transactions" tab
+   - Select "Injected Web3" as environment (connects to MetaMask)
+   - Enter a charity address parameter (use one of your Ganache accounts)
+   - Deploy the contract
+4. Copy the deployed contract address here
+*/
 
 // Set current environment
 const currentEnv = "development"; // Change to "sepolia" for testnet
