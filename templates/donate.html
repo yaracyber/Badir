@@ -722,10 +722,82 @@ document.addEventListener('DOMContentLoaded', function() {
                     charityAddressElement.textContent = charityAddress;
                 }
             }
+            
+            // Update all info containers to show they're available
+            document.querySelectorAll('.contract-info').forEach(container => {
+                const infoText = container.querySelector('.text-white-50');
+                if (infoText && infoText.textContent.includes('Connect wallet')) {
+                    infoText.textContent = 'Click the button to view information';
+                }
+            });
         } catch (error) {
             console.error("Error updating donation stats:", error);
         }
     }
+    
+    // Set up action buttons
+    document.getElementById('get-highest-donation-btn')?.addEventListener('click', async function() {
+        if (!contract) {
+            alert('Please connect your wallet first');
+            return;
+        }
+        
+        try {
+            const result = await getHighestDonation();
+            const infoContainer = document.getElementById('highest-donation-result');
+            if (infoContainer) {
+                infoContainer.innerHTML = `
+                    <p class="text-white mb-0">Highest Donation: ${result.amount} ETH</p>
+                    <p class="text-white-50 mb-0">Donor: ${formatAddress(result.donor)}</p>
+                `;
+            }
+        } catch (error) {
+            console.error("Error getting highest donation:", error);
+            alert("Error: Only the contract owner can view the highest donation");
+        }
+    });
+    
+    document.getElementById('get-total-donations-btn')?.addEventListener('click', async function() {
+        if (!contract) {
+            alert('Please connect your wallet first');
+            return;
+        }
+        
+        try {
+            const totalAmount = await getTotalDonations();
+            const infoContainer = document.getElementById('total-donations-result');
+            if (infoContainer) {
+                infoContainer.innerHTML = `
+                    <p class="text-white mb-0">Total Donations: ${parseFloat(totalAmount).toFixed(4)} ETH</p>
+                    <p class="text-white-50 mb-0">From all donors</p>
+                `;
+            }
+        } catch (error) {
+            console.error("Error getting total donations:", error);
+            alert("Error retrieving total donations");
+        }
+    });
+    
+    document.getElementById('get-addresses-btn')?.addEventListener('click', async function() {
+        if (!contract) {
+            alert('Please connect your wallet first');
+            return;
+        }
+        
+        try {
+            const charityAddress = await getCharityAddress();
+            const infoContainer = document.getElementById('addresses-result');
+            if (infoContainer) {
+                infoContainer.innerHTML = `
+                    <p class="text-white mb-0">Charity Address:</p>
+                    <p class="text-white-50 mb-0" style="word-break: break-all;">${charityAddress}</p>
+                `;
+            }
+        } catch (error) {
+            console.error("Error getting charity address:", error);
+            alert("Error retrieving charity address");
+        }
+    });
 });
 </script>
 {% endblock %}
