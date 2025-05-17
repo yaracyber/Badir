@@ -305,6 +305,58 @@
         font-size: 1.3rem;
         flex-shrink: 0;
     }
+
+    /* Highlight the connect wallet button */
+    .connect-wallet-main {
+        font-size: 20px;
+        padding: 20px 40px;
+        background: linear-gradient(135deg, #E5C876, #C7A95E);
+        color: #080E16;
+        font-weight: 700;
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 15px 30px rgba(199, 169, 94, 0.4);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        display: inline-block;
+        transform: scale(1);
+        animation: pulse 2s infinite;
+    }
+
+    .connect-wallet-main::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: all 0.7s ease;
+        z-index: -1;
+    }
+
+    .connect-wallet-main:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(199, 169, 94, 0.5);
+    }
+
+    .connect-wallet-main:hover::before {
+        left: 100%;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(199, 169, 94, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 12px rgba(199, 169, 94, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(199, 169, 94, 0);
+        }
+    }
 </style>
 {% endblock %}
 
@@ -316,7 +368,7 @@
                 <h1>Support Our Blockchain Initiative</h1>
                 <p>Your Ethereum donations directly fund humanitarian efforts with complete transparency, security, and real-time tracking of every contribution.</p>
                 <div class="mt-5">
-                    <button id="connectWallet" class="donate-btn" style="font-size: 18px; padding: 15px 30px;">
+                    <button id="connectWallet" class="connect-wallet-main">
                         <i class="fas fa-wallet me-2"></i> Connect Wallet
                     </button>
                 </div>
@@ -422,7 +474,7 @@
     </div>
 </section>
 
-<!-- Contract Info Cards -->
+<!-- Smart Contract Information -->
 <section class="donate-section pt-0">
     <div class="container">
         <div class="row mb-5">
@@ -431,6 +483,7 @@
                 <p class="text-white-50">All donation information is stored permanently on the Ethereum blockchain for complete transparency.</p>
             </div>
         </div>
+        
         <div class="row">
             <!-- Highest Donation Card -->
             <div class="col-md-6 col-lg-3 mb-4">
@@ -510,9 +563,6 @@
         </div>
     </div>
 </section>
-
-
-
 {% endblock %}
 
 {% block extra_js %}
