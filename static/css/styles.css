@@ -1,11 +1,11 @@
 /* 
   Badir - Blockchain Charity Platform
-  Main Stylesheet
+  Main Stylesheet - Luxury Navy & Gold Theme
 */
 
 /* General Styles */
 :root {
-    /* New luxury navy and gold color palette */
+    /* Luxury navy and gold color palette */
     --primary-color: #1E3957; /* Deep navy blue */
     --secondary-color: #C7A95E; /* Gold accent */
     --dark-color: #14202E; /* Very dark navy */
@@ -33,6 +33,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: var(--light-color);
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -52,29 +53,65 @@ h1, h2, h3, h4, h5, h6 {
 /* Navigation */
 .navbar {
     background-color: var(--dark-color) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
 }
 
 .navbar-brand {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--color-gold) !important;
+    position: relative;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.logo-small {
+    font-size: 0.8em;
+    letter-spacing: 3px;
 }
 
 .nav-link {
     font-weight: 500;
     transition: all 0.3s ease;
     color: var(--light-color) !important;
+    padding: 0.5rem 1.2rem !important;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.nav-link:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--color-gold);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
 .nav-link:hover {
-    transform: translateY(-2px);
     color: var(--color-gold) !important;
+}
+
+.nav-link:hover:after {
+    width: 70%;
 }
 
 .nav-link.active {
     color: var(--color-gold) !important;
     font-weight: 600;
+}
+
+.nav-link.active:after {
+    width: 70%;
 }
 
 /* Hero Section */
@@ -85,26 +122,37 @@ h1, h2, h3, h4, h5, h6 {
 /* Card Styling */
 .card {
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     background-color: white;
+    box-shadow: 0 10px 30px rgba(20, 32, 46, 0.08);
 }
 
 .card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(20, 32, 46, 0.15);
+    transform: translateY(-5px);
 }
 
 .card-title {
     font-weight: 600;
     color: var(--color-deep-navy);
+    font-family: 'Playfair Display', serif;
 }
 
 /* Buttons */
 .btn {
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: 500;
     transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    padding: 10px 24px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.btn-lg {
+    padding: 12px 28px;
 }
 
 .btn-primary {
@@ -117,105 +165,274 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--color-darkest-navy);
     border-color: var(--color-darkest-navy);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 15px rgba(20, 32, 46, 0.2);
 }
 
 .btn-outline-primary {
     border-color: var(--color-deep-navy);
     color: var(--color-deep-navy);
+    border-width: 2px;
 }
 
 .btn-outline-primary:hover {
     background-color: var(--color-deep-navy);
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 15px rgba(20, 32, 46, 0.2);
 }
 
 .btn-success, .btn-donate {
-    background-color: var(--color-gold) !important;
-    border-color: var(--color-gold) !important;
+    background: linear-gradient(135deg, var(--color-gold), #D4B267) !important;
+    border: none !important;
     color: var(--color-darkest-navy) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(199, 169, 94, 0.3);
 }
 
 .btn-success:hover, .btn-donate:hover {
-    background-color: #D4B267 !important;
-    border-color: #D4B267 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #D4B267, var(--color-gold)) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(199, 169, 94, 0.4);
+}
+
+.btn-outline-light {
+    border-width: 2px;
 }
 
 .btn-outline-light:hover {
     color: var(--color-deep-navy) !important;
+    transform: translateY(-2px);
+}
+
+.btn-secondary-gradient {
+    background: linear-gradient(135deg, var(--color-deep-navy), var(--color-navy)) !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(30, 57, 87, 0.3);
+}
+
+.btn-secondary-gradient:hover {
+    background: linear-gradient(135deg, var(--color-navy), var(--color-deep-navy)) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(30, 57, 87, 0.4);
 }
 
 /* Progress Bar */
 .progress {
-    height: 20px;
-    border-radius: 10px;
+    height: 12px;
+    border-radius: 6px;
     background-color: #e9ecef;
     overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .progress-bar {
-    background-color: var(--color-gold);
+    background: linear-gradient(to right, var(--color-gold), #D4B267);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.2) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.2) 75%, 
+        transparent 75%, 
+        transparent);
+    background-size: 20px 20px;
+    animation: progress-animation 2s linear infinite;
+}
+
+@keyframes progress-animation {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 0; }
 }
 
 /* Footer */
 footer {
     background-color: var(--dark-color);
     color: white;
-    padding: 3rem 0;
+    padding: 5rem 0 3rem;
+    position: relative;
+}
+
+footer:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--color-gold), var(--color-deep-navy), var(--color-gold));
 }
 
 footer a {
     color: var(--light-color);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 footer a:hover {
     color: var(--color-gold);
-    text-decoration: none;
+    transform: translateX(5px);
+}
+
+.footer-logo {
+    font-size: 2rem;
+    color: var(--color-gold);
+    margin-bottom: 20px;
+}
+
+.footer-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.footer-divider-line {
+    height: 1px;
+    width: 100px;
+    background: linear-gradient(to right, transparent, rgba(199, 169, 94, 0.5), transparent);
+    display: inline-block;
+}
+
+.footer-divider-icon {
+    color: var(--color-gold);
+    margin: 0 15px;
+    font-size: 0.5rem;
+}
+
+.footer-heading {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
+}
+
+.footer-heading:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--color-gold);
+}
+
+.footer-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
 }
 
 .social-icons a {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    margin-right: 10px;
     transition: all 0.3s ease;
+    color: white;
 }
 
 .social-icons a:hover {
     background-color: var(--color-gold);
     color: var(--color-darkest-navy);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+}
+
+.copyright-text {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    margin-top: 20px;
 }
 
 /* Tech Stack Icons */
 .tech-icon {
-    padding: 20px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    padding: 25px;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(20, 32, 46, 0.08);
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .tech-icon:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    transform: translateY(-5px);
+    background-color: white;
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(20, 32, 46, 0.12);
+}
+
+.tech-icon i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--color-deep-navy), var(--color-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Blockchain Steps */
+.blockchain-steps {
+    counter-reset: step-counter;
+    list-style: none;
+    padding-left: 0;
+}
+
 .blockchain-steps li {
-    padding: 15px;
+    padding: 25px 25px 25px 80px;
     border-left: 3px solid var(--color-gold);
-    background-color: rgba(30, 57, 87, 0.05);
-    margin-bottom: 15px;
-    border-radius: 0 5px 5px 0;
+    background-color: white;
+    margin-bottom: 25px;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 10px 30px rgba(20, 32, 46, 0.08);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.blockchain-steps li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 15px 40px rgba(20, 32, 46, 0.12);
+}
+
+.blockchain-steps li:before {
+    counter-increment: step-counter;
+    content: counter(step-counter);
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background: linear-gradient(135deg, var(--color-deep-navy), var(--color-gold));
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
 }
 
 /* Donation Page */
@@ -228,6 +445,10 @@ footer a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    background-color: rgba(20, 32, 46, 0.02);
+    border-radius: 8px;
+    border: 1px dashed rgba(20, 32, 46, 0.1);
 }
 
 /* Responsive Adjustments */
@@ -237,7 +458,14 @@ footer a:hover {
     }
     
     .blockchain-steps li {
-        padding: 10px;
+        padding: 20px 20px 20px 70px;
+    }
+    
+    .blockchain-steps li:before {
+        width: 35px;
+        height: 35px;
+        left: 15px;
+        top: 15px;
     }
 }
 
@@ -252,7 +480,7 @@ footer a:hover {
 .spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid rgba(0, 0, 0, 0.1);
+    border: 3px solid rgba(199, 169, 94, 0.1);
     border-radius: 50%;
     border-top-color: var(--color-gold);
     animation: spin 1s ease-in-out infinite;
@@ -266,6 +494,29 @@ footer a:hover {
 /* Donation Form */
 #donationForm {
     transition: all 0.3s ease;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(20, 32, 46, 0.08);
+}
+
+/* Form Elements */
+.form-control {
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 0.25rem rgba(199, 169, 94, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--color-deep-navy);
+    margin-bottom: 8px;
 }
 
 /* Transaction Status */
@@ -276,40 +527,285 @@ footer a:hover {
 /* Wallet Connection Button */
 #connectWallet {
     transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--color-deep-navy), var(--color-navy));
+    color: white;
+    border: none;
+    padding: 12px 24px;
 }
 
 #connectWallet:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(30, 57, 87, 0.3);
+    background: linear-gradient(135deg, var(--color-navy), var(--color-deep-navy));
 }
 
 /* Alert Styling */
 .alert {
-    border-radius: 8px;
+    border-radius: 12px;
     border: none;
+    padding: 15px 20px;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .alert-info {
-    background-color: var(--color-dusty-blue);
+    background: linear-gradient(135deg, var(--color-dusty-blue), #7A9BB5);
     color: white;
 }
 
 .alert-success {
-    background-color: var(--success-color);
+    background: linear-gradient(135deg, var(--success-color), #5A7E6F);
     color: white;
 }
 
 .alert-warning {
-    background-color: var(--warning-color);
+    background: linear-gradient(135deg, var(--warning-color), #C5A357);
     color: var(--dark-color);
 }
 
 .alert-danger {
-    background-color: var(--danger-color);
+    background: linear-gradient(135deg, var(--danger-color), #C3634B);
     color: white;
 }
 
 /* Images */
 .img-fluid {
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(20, 32, 46, 0.15);
+    transition: all 0.5s ease;
+}
+
+.img-fluid:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(20, 32, 46, 0.2);
+}
+
+/* ==== NEW GRADIENT SECTIONS ==== */
+
+.gradient-hero {
+    background: linear-gradient(135deg, var(--color-darkest-navy) 0%, var(--color-deep-navy) 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(20, 32, 46, 0.2);
+}
+
+.gradient-hero::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(199, 169, 94, 0.1) 0%, rgba(20, 32, 46, 0) 70%);
+    transform: rotate(30deg);
+    z-index: 1;
+}
+
+.welcome-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #eef2f7 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(20, 32, 46, 0.1);
+    border-left: 5px solid var(--color-gold);
+}
+
+.welcome-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(ellipse at center, rgba(199, 169, 94, 0.05) 0%, rgba(248, 249, 250, 0) 70%);
+    z-index: 0;
+}
+
+.welcome-title {
+    color: var(--color-deep-navy);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.welcome-title::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-deep-navy), var(--color-gold));
+}
+
+/* Animation Elements */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Campaign Cards */
+.campaign-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 35px rgba(20, 32, 46, 0.1);
+    background-color: white;
+    position: relative;
+}
+
+.campaign-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--color-deep-navy), var(--color-gold));
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.campaign-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(20, 32, 46, 0.15);
+}
+
+.campaign-card:hover::after {
+    opacity: 1;
+}
+
+.campaign-img-container {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.campaign-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.campaign-card:hover .campaign-img-container img {
+    transform: scale(1.1);
+}
+
+.campaign-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(20, 32, 46, 0.85);
+    color: var(--color-gold);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.campaign-card .card-body {
+    padding: 25px;
+}
+
+.campaign-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--color-deep-navy);
+    transition: all 0.3s ease;
+}
+
+.campaign-card:hover .campaign-title {
+    color: var(--color-gold);
+}
+
+.campaign-description {
+    color: #4A536A;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.campaign-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-deep-navy);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(20, 32, 46, 0.1);
+}
+
+/* Section Titles */
+.campaign-section-title {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    color: var(--color-deep-navy);
+}
+
+.campaign-section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--color-deep-navy), var(--color-gold));
+    border-radius: 2px;
+}
+
+/* Stats Counter */
+.stats-counter {
+    background: linear-gradient(135deg, var(--color-deep-navy) 0%, var(--color-darkest-navy) 100%);
+    border-radius: 15px;
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(20, 32, 46, 0.2);
+}
+
+.counter-item {
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.counter-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-gold);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Playfair Display', serif;
+}
+
+.counter-label {
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* CTA Section */
+.cta-gradient {
+    background: linear-gradient(135deg, var(--color-darkest-navy) 0%, var(--color-deep-navy) 100%);
+    border-radius: 15px;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(20, 32, 46, 0.2);
 }

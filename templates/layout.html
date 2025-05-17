@@ -16,6 +16,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     
@@ -25,7 +28,9 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">BADIR</a>
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <span class="logo-text">B<span class="logo-small">ADIR</span></span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -55,34 +60,53 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-4 mt-5">
+    <footer class="py-5 mt-5">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5 class="text-gold">BADIR</h5>
-                    <p>Supporting communities through blockchain technology</p>
+            <div class="row mb-4">
+                <div class="col-12 text-center mb-4">
+                    <div class="footer-logo">
+                        <span class="logo-text">B<span class="logo-small">ADIR</span></span>
+                    </div>
+                    <div class="footer-divider">
+                        <span class="footer-divider-line"></span>
+                        <span class="footer-divider-icon"><i class="fas fa-circle"></i></span>
+                        <span class="footer-divider-line"></span>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-gold">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('donate') }}">Donate</a></li>
-                        <li><a href="{{ url_for('technology') }}">Technology</a></li>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-gold footer-heading">About Us</h5>
+                    <p class="footer-text">Supporting communities through transparent blockchain technology, ensuring your donations make the maximum impact where needed most.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-gold footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="{{ url_for('home') }}"><i class="fas fa-angle-right me-2"></i>Home</a></li>
+                        <li><a href="{{ url_for('donate') }}"><i class="fas fa-angle-right me-2"></i>Donate</a></li>
+                        <li><a href="{{ url_for('technology') }}"><i class="fas fa-angle-right me-2"></i>Technology</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right me-2"></i>Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right me-2"></i>Terms of Service</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-gold">Connect</h5>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-gold footer-heading">Connect With Us</h5>
                     <div class="social-icons">
                         <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="me-2"><i class="fab fa-facebook"></i></a>
                         <a href="#" class="me-2"><i class="fab fa-github"></i></a>
                         <a href="#" class="me-2"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="mb-1">Contact us at:</p>
+                        <p class="text-gold fw-bold">contact@badir.org</p>
                     </div>
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2025 Badir. All rights reserved.</p>
+                    <p class="copyright-text">&copy; 2025 Badir. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -93,6 +117,18 @@
     
     <!-- Ethers.js -->
     <script src="https://cdn.ethers.io/lib/ethers-5.6.umd.min.js" type="application/javascript"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 50
+            });
+        });
+    </script>
     
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
