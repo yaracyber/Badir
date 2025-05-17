@@ -6,15 +6,17 @@
 <style>
     /* Tech-focused hero section */
     .hero-section {
-        background-color: var(--color-darkest-navy);
+        background-color: var(--darkest-color);
         position: relative;
         overflow: hidden;
         height: 100vh;
         min-height: 700px;
         display: flex;
         align-items: center;
-        margin-top: -76px; /* Account for navbar height */
-        padding-top: 76px;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        max-width: 100%;
     }
     
     .hero-section::before {
@@ -25,7 +27,7 @@
         width: 100%;
         height: 100%;
         background-image: 
-            linear-gradient(to right, rgba(20, 32, 46, 0.9), rgba(30, 57, 87, 0.8)),
+            linear-gradient(to right, rgba(8, 14, 22, 0.95), rgba(12, 22, 34, 0.85)),
             url('https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         background-size: cover;
         background-position: center;
@@ -288,7 +290,7 @@
     /* Features Section */
     .features-section {
         padding: 120px 0;
-        background-color: var(--light-color);
+        background-color: var(--darker-color);
         position: relative;
     }
     
@@ -300,14 +302,17 @@
     }
     
     .feature-card {
-        background: white;
+        background: rgba(12, 22, 34, 0.6);
+        border: 1px solid rgba(199, 169, 94, 0.1);
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 15px 40px rgba(20, 32, 46, 0.08);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         transition: all 0.4s ease;
         height: 100%;
         position: relative;
         z-index: 1;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
     }
     
     .feature-card::before {
@@ -359,7 +364,7 @@
     
     .feature-description {
         font-size: 1rem;
-        color: #4A536A;
+        color: #b0b0b0;
         line-height: 1.7;
     }
     
@@ -369,7 +374,8 @@
         font-weight: 800;
         margin-bottom: 60px;
         text-align: center;
-        color: var(--color-deep-navy);
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
     
     .section-title::after {
@@ -493,17 +499,22 @@
     /* Active Campaigns */
     .campaigns-section {
         padding: 120px 0;
-        background-color: var(--light-color);
+        background-color: var(--darkest-color);
+        background-image: radial-gradient(circle at 20% 50%, rgba(30, 57, 87, 0.15) 0%, transparent 50%), 
+                         radial-gradient(circle at 80% 80%, rgba(199, 169, 94, 0.1) 0%, transparent 50%);
     }
     
     .campaign-card {
         border-radius: 16px;
         overflow: hidden;
         transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 15px 35px rgba(20, 32, 46, 0.1);
-        background-color: white;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        background-color: rgba(12, 22, 34, 0.7);
+        border: 1px solid rgba(199, 169, 94, 0.15);
         position: relative;
         height: 100%;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
     }
     
     .campaign-card::after {

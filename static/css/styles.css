@@ -1,14 +1,16 @@
 /* 
   Badir - Blockchain Charity Platform
-  Main Stylesheet - Luxury Navy & Gold Theme
+  Main Stylesheet - Dark Tech Theme with Gold Accents
 */
 
 /* General Styles */
 :root {
-    /* Luxury navy and gold color palette */
+    /* Dark tech theme with gold accents */
     --primary-color: #1E3957; /* Deep navy blue */
     --secondary-color: #C7A95E; /* Gold accent */
     --dark-color: #14202E; /* Very dark navy */
+    --darker-color: #0C1622; /* Almost black */
+    --darkest-color: #080E16; /* Pure black with slight navy tint */
     --light-color: #ECF0F5; /* Light gray with blue tint */
     --accent-color-1: #A5B2BD; /* Slate blue gray */
     --accent-color-2: #88A9C3; /* Dusty blue */
@@ -18,7 +20,7 @@
     --info-color: #88A9C3; /* Dusty blue */
     --success-color: #6A8E7F; /* Muted green */
     
-    /* Color codes from the image */
+    /* Color codes */
     --color-light-slate: #A5B2BD; /* #A5B2BD */
     --color-dusty-blue: #88A9C3; /* #88A9C3 */
     --color-medium-navy: #4A536A; /* #4A536A */
@@ -26,24 +28,42 @@
     --color-deep-navy: #1E3957; /* #1E3957 */
     --color-darkest-navy: #14202E; /* #14202E */
     --color-gold: #C7A95E; /* Gold color */
+    --color-bright-gold: #E5C876; /* Brighter gold for accents */
 }
 
 body {
     font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: var(--light-color);
+    color: #e0e0e0;
+    background-color: var(--darkest-color);
     overflow-x: hidden;
+}
+
+.dark-theme {
+    --bg-primary: var(--darkest-color);
+    --bg-secondary: var(--darker-color);
+    --text-primary: #f5f5f5;
+    --text-secondary: #b0b0b0;
+}
+
+.main-content {
+    padding-top: 0;
+    margin-top: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
+    color: #fff;
 }
 
 /* Custom Text Colors */
 .text-gold {
     color: var(--color-gold);
+}
+
+.text-bright-gold {
+    color: var(--color-bright-gold);
 }
 
 .text-navy {
@@ -52,9 +72,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navigation */
 .navbar {
-    background-color: var(--dark-color) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(8, 14, 22, 0.85) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     padding: 15px 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(199, 169, 94, 0.15);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: rgba(8, 14, 22, 0.95) !important;
+    padding: 10px 0;
 }
 
 .navbar-brand {
@@ -68,6 +98,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--color-gold), var(--color-bright-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .logo-small {
@@ -83,6 +117,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.95rem;
     letter-spacing: 1px;
     position: relative;
+    margin: 0 5px;
 }
 
 .nav-link:after {
@@ -92,26 +127,29 @@ h1, h2, h3, h4, h5, h6 {
     height: 2px;
     bottom: 0;
     left: 50%;
-    background-color: var(--color-gold);
+    background: linear-gradient(90deg, var(--color-gold), var(--color-bright-gold));
     transition: all 0.3s ease;
     transform: translateX(-50%);
+    opacity: 0;
 }
 
 .nav-link:hover {
-    color: var(--color-gold) !important;
+    color: var(--color-bright-gold) !important;
 }
 
 .nav-link:hover:after {
     width: 70%;
+    opacity: 1;
 }
 
 .nav-link.active {
-    color: var(--color-gold) !important;
+    color: var(--color-bright-gold) !important;
     font-weight: 600;
 }
 
 .nav-link.active:after {
     width: 70%;
+    opacity: 1;
 }
 
 /* Hero Section */
