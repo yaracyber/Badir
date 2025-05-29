@@ -1,6 +1,6 @@
 # 🛡️ Badir – Blockchain-Based Donation Platform
 
-**Badir** is a secure, transparent, and decentralized donation platform built on blockchain technology. It is designed to help donors contribute directly to verified causes with full traceability of their funds—eliminating the need for intermediaries and reducing the risk of fraud.
+Badir is a secure, transparent, and decentralized donation platform built on blockchain technology. It is designed to help donors contribute directly to verified causes with full traceability of their funds—eliminating the need for intermediaries and reducing the risk of fraud.
 
 ---
 
